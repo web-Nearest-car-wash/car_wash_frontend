@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Search.module.css';
-import IconSearch from '../icons/IconSearch';
-import RemoveSearch from '../icons/RemoveSearch';
+import IconSearch from '../icons/IconSearch111';
+import RemoveSearch from '../icons/RemoveSearch111';
 import '../../../index.css';
 
 function Search({ query, nightMode, placeholder, onChange, clearInput }) {
