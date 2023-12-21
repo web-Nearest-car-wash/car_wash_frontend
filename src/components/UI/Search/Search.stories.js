@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search } from './Search';
+import Search from './Search';
 
 export default {
 	title: 'UI/SearchForm',
@@ -14,7 +14,7 @@ const Template = (args) => {
 	};
 
 	const clearInput = () => {
-		setQuery(''); // Очищаем значение input
+		setQuery('');
 	};
 
 	return (
