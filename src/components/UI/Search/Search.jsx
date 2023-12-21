@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Search.module.css';
-import UserIcon from '../icons/iconSearch';
-import RemoveSearch from '../icons/removeSearch';
+import IconSearch from '../icons/IconSearch';
+import RemoveSearch from '../icons/RemoveSearch';
 import '../../../index.css';
 
 function Search({ query, nightMode, placeholder, onChange, clearInput }) {
@@ -11,7 +11,7 @@ function Search({ query, nightMode, placeholder, onChange, clearInput }) {
 	return (
 		<div className={styles.form}>
 			<div className={`${styles.wrapper} ${mode}`}>
-				<UserIcon className={styles.icon} />
+				<IconSearch className={styles.icon} />
 				<input
 					type="text"
 					id="name"

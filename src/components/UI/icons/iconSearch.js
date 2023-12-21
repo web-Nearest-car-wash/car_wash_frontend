@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function UserIcon({ fill, width, height, className }) {
+function IconSearch({ fill, width, height, className }) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -27,18 +27,18 @@ function UserIcon({ fill, width, height, className }) {
 	);
 }
 
-UserIcon.propTypes = {
+IconSearch.propTypes = {
 	fill: PropTypes.string,
 	width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	className: PropTypes.string,
 };
 
-UserIcon.defaultProps = {
+IconSearch.defaultProps = {
 	fill: '#696464',
 	width: '24',
 	height: '24',
 	className: '',
 };
 
-export default UserIcon;
+export default IconSearch;
