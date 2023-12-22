@@ -1,5 +1,12 @@
+// import Map from "../../components/Map/Map";
+import YMap from '../../components/Map/YMap';
+
 function HomePage() {
-	return <section>Home Page</section>;
+	return (
+		<section style={{ width: 1006, height: 724 }}>
+			<YMap />
+		</section>
+	);
 }
 
 export default HomePage;
