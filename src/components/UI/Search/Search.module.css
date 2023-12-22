@@ -1,11 +1,8 @@
-.form {
+.wrapper {
+	position: relative;
 	background: #fff;
 	display: flex;
 	flex-direction: column;
-}
-
-.wrapper {
-	position: relative;
 }
 
 .input {
