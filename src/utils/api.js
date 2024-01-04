@@ -6,13 +6,26 @@ export class Api {
 	constructor({ baseUrl, headers }) {
 		this.#baseurl = baseUrl;
 		this.#headers = headers;
-	}
-}
+	};
+
+	getListCarWash() {
+		return fetch(`${this.#baseurl}/api/carwashes/`, {
+			headers: this.#headers,
+		})
+			.then((res) => {
+				if (res.ok) {
+					return res.json();
+				};
+				return Promise.reject(new Error(`Ошибка: ${res.status}`));
+			})
+			.catch(err => err)
+	};
+};
 
 const api = new Api({
-	baseUrl: 'https://car-wash.site/',
+	baseUrl: 'http://185.41.161.91',
 	headers: {
-		'content-type': 'application/json',
+		'Content-Type': 'application/json',
 	},
 });
 

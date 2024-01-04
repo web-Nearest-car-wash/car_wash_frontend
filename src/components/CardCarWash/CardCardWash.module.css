@@ -1,4 +1,4 @@
-.card {
+.cardWash {
     position: relative;
     background-color: #fff;
     border-radius: 20px;
@@ -7,6 +7,15 @@
     padding: 16px;
     width: 320px;
     box-sizing: border-box;
+}
+
+.cardWash:hover .title {
+    color:#5568D0;
+}
+
+.cardWash:active .open {
+    color: #fff;
+    background-color: #5568D0;
 }
 
 .image {
@@ -29,6 +38,8 @@
 }
 
 .rating {
+    display: flex;
+    align-items: center;
     font-family: Inter;
     font-size: 16px;
     font-weight: 500;
@@ -36,10 +47,14 @@
     letter-spacing: 0em;
     text-align: left;
     color: #252525;
-    width: 45px;
     align-self: center;
     padding: 0;
     margin: 0;
+}
+
+.ratingIcon {
+    width: 20px;
+    height: 20px;
 }
 
 .subway {

@@ -1,21 +1,21 @@
 import styles from './CardCardWash.module.css';
-import img from './Rectangle 1180.svg';
 
 import ReitingStar from '../UI/icons/ReitingStar.svg';
 import ColorLineSubway from '../UI/icons/ColorLineSubway.svg';
+import PictureCarWash from '../UI/icons/PictureCarWash.svg';
 
-
-function CardCardWash() {
+/* eslint-disable react/prop-types */
+function CardCardWash({ card }) {
     return (
-        <div className={styles.card}>
-            <img className={styles.image} src={img} alt='Основная картинка' />
-            <h3 className={styles.title}>ABCautо Professional на Дубнинской<p className={styles.rating}>4.6</p><img src={ReitingStar} alt='ReitingStar' /></h3>
-            <p className={styles.subway}><img style={{paddingRight: 4,}} src={ColorLineSubway} alt='ColorLineSubway' />Новослободская</p>
-            <p className={styles.adress}>ул. Двадцати Шести Бакинских Комиссаров, 24к2</p>
-            <p className={styles.price}>от 250р</p>
-            <p className={styles.open}>Открыто до 18:00</p>
+        <div className={styles.cardWash}>
+            <img className={styles.image} src={card.image[0] ? card.image : PictureCarWash} alt='Картинка автомойки' />
+            <h3 className={styles.title}>{card.name ? card.name : 'Автомойка'}{card.rating ? <p className={styles.rating}>{card.rating}<img className={styles.ratingIcon} src={ReitingStar} alt='ReitingStar' /></p> : ''}</h3>
+            <p className={styles.subway}><img style={{ paddingRight: 4, }} src={ColorLineSubway} alt='ColorLineSubway' />{card.metro.name}</p>
+            <p className={styles.adress}>{card.contacts.address}</p>
+            {card.services ? <p className={styles.price}>от</p> : ''}
+            {card.open_until ? <p className={styles.open}>{card.open_until}</p> : ''}
         </div>
     );
-}
+};
 
 export default CardCardWash;
