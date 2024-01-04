@@ -13,7 +13,7 @@ function CardCardWash({ card }) {
             };
             return accumulator;
         });
-        return result.price
+        return result.price;
     };
 
     return (
