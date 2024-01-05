@@ -1,0 +1,31 @@
+.filter {
+	height: 44px;
+	display: flex;
+}
+
+.button {
+	padding: 0;
+	border: none;
+	background-color: inherit;
+	cursor: pointer;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+}
+
+.counter {
+	margin: 0;
+	font-family: 'Inter', Arial, sans-serif;
+	color: white;
+	font-size: 10px;
+	font-weight: 500;
+	line-height: normal;
+	background-color: #5568d0;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	translate: -8px;
+}
