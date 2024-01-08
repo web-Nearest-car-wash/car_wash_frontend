@@ -1,0 +1,62 @@
+.selector {
+	font-family: Roboto;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.selected {
+	border-radius: 5px;
+	padding: 0px 8px 0px 10px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	border: 0;
+	background-color: #fff;
+	width: 261px;
+	cursor: pointer;
+	height: 44px;
+}
+
+.selected:after {
+	content: '';
+	display: block;
+	width: 24px;
+	height: 24px;
+	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path d='M11.9998 13.172L16.9498 8.222L18.3638 9.636L11.9998 16L5.63577 9.636L7.05077 8.222L12.0008 13.172H11.9998Z' fill='%237B7B7B'/></svg>")
+		no-repeat center center;
+	margin-left: auto;
+}
+
+.menu {
+	list-style: none;
+	padding: 0;
+	margin: 8px 0 0;
+}
+
+.menuItem {
+	border: 0;
+	background-color: #fff;
+	height: 44px;
+	padding: 0px 8px 0px 12px;
+	width: 261px;
+	cursor: pointer;
+	text-align: left;
+}
+
+.itemWrapper:first-child .menuItem {
+	border-radius: 5px 5px 0px 0px;
+}
+
+.itemWrapper:last-child .menuItem {
+	border-radius: 0px 0px 5px 5px;
+}
+
+.menuItem:focus {
+	background-color: #5568d0;
+}
+
+.reorder {
+	transform: rotateX(180deg);
+}
