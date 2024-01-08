@@ -29,3 +29,7 @@
 	justify-content: center;
 	translate: -8px;
 }
+
+.hidden {
+	display: none;
+}
