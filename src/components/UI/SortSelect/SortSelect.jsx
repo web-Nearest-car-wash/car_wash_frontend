@@ -2,23 +2,26 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SortSelect.module.css';
 import SelectIcon from '../icons/SelectIcon';
-import '../../../index.css';
 
-function SortSelect({ options, defaultValue }) {
+function SortSelect({ options, defaultValue, onChange, reorderChange }) {
 	const [isOpen, setIsOpen] = useState(false);
-	const [selectedOption, setSelectedOption] = useState(
-		defaultValue || 'Выберите значение'
-	);
-	const [reorder, changeReorder] = useState(false);
+	const [selectedOption, setSelectedOption] = useState(defaultValue);
+	const [reorder, setReorder] = useState(false);
 
-	const handleReorder = (event) => {
-		event.stopPropagation();
-		changeReorder(!reorder);
-	};
 	const toggleDropdown = () => setIsOpen(!isOpen);
 	const handleSelect = (option) => {
 		setSelectedOption(option);
 		setIsOpen(false);
+		if (onChange) {
+			onChange(option);
+		}
+	};
+	const handleReorder = (event) => {
+		event.stopPropagation();
+		setReorder(!reorder);
+		if (reorderChange) {
+			onChange(reorderChange);
+		}
 	};
 
 	return (
@@ -33,7 +36,7 @@ function SortSelect({ options, defaultValue }) {
 					height={30}
 					fill="#5568D0"
 					className={reorder ? styles.reorder : ''}
-					onClick={(event) => handleReorder(event)}
+					onClick={handleReorder}
 				/>
 				{selectedOption}
 			</button>
@@ -59,11 +62,15 @@ function SortSelect({ options, defaultValue }) {
 SortSelect.propTypes = {
 	options: PropTypes.arrayOf(PropTypes.string),
 	defaultValue: PropTypes.string,
+	onChange: PropTypes.func,
+	reorderChange: PropTypes.func,
 };
 
 SortSelect.defaultProps = {
 	options: ['По близости', 'По рейтингу', 'По цене'],
 	defaultValue: 'По близости',
+	onChange: () => {},
+	reorderChange: () => {},
 };
 
 export default SortSelect;
