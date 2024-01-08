@@ -12,7 +12,7 @@ root.render(
 	<YMaps
 		query={{
 			lang: 'ru_RU',
-			apikey: 'f3e65444-a23b-402f-9012-e0a44903de2b',
+			apikey: process.env.REACT_APP_API_KEY,
 		}}
 	>
 		<Provider store={store}>
