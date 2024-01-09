@@ -25,7 +25,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Header />
-			<main id="main">
+			<main id="main" style={{ backgroundColor: '#ECECEC' }}>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/about" element={<AboutPage />} />

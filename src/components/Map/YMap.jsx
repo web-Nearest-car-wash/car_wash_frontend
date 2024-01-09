@@ -41,7 +41,7 @@ function YMap() {
 					center: [coordinates.latitude, coordinates.longitude],
 					zoom: 13,
 				}}
-				style={{ width: '100%', height: '100%' }}
+				style={{ width: '100%', height: '100vh' }}
 				onLoad={(ymaps) => getGeolocation(ymaps)}
 				modules={['geolocation']}
 			>
