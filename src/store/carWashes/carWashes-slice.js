@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	test: '',
+	test: 'Now',
 };
 
 export const sliceName = 'carWashes';
