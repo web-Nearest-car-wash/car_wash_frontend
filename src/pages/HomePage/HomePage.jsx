@@ -36,9 +36,10 @@ function HomePage() {
 		<section className={styles.page}>
 			<div className={styles.sidebar}>
 				<div className={styles.cardsContainer}>
-					{listCarWashes.map((card) => (
-						<CardCardWash key={card.id} card={card} />
-					))}
+					{listCarWashes.length &&
+						listCarWashes.map((card) => (
+							<CardCardWash key={card.id} card={card} />
+						))}
 				</div>
 			</div>
 			<div className={styles.map}>
