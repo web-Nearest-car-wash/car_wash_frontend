@@ -1,34 +1,57 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import styles from './HomePage.module.css';
 import api from '../../utils/api';
-
-import { selectCardsCarWashes, addDataTo } from '../../store/cardsCarWashes/cardsCarWashes-slice';
-
+import {
+	selectCardsCarWashes,
+	addDataTo,
+} from '../../store/cardsCarWashes/cardsCarWashes-slice';
 import YMap from '../../components/Map/YMap';
+import Search from '../../components/UI/Search/Search';
 import CardCardWash from '../../components/CardCarWash/CardCarWash';
 
 function HomePage() {
 	const dispatch = useDispatch();
 	const { listCarWashes } = useSelector(selectCardsCarWashes);
+	const [query, setQuery] = useState('');
+
+	const handleOnChange = (e) => {
+		setQuery(e.target.value);
+	};
+
+	const clearInput = () => {
+		setQuery('');
+	};
 
 	useEffect(() => {
-		api.getListCarWash()
+		api
+			.getListCarWash()
 			.then((res) => {
 				dispatch(addDataTo(res.results));
 			})
-			.catch((err) => `Ошибка при получении карточек ${err}`)
-	}, [dispatch])
+			.catch((err) => `Ошибка при получении карточек ${err}`);
+	}, [dispatch]);
 
 	return (
-		<section style={{
-			width: 1360, minHeight: 760, display: 'flex', justifyContent: 'space-between', columnGap: '16px', margin: '0 auto', boxSizing: 'border-box'
-		}}>
-			<div>
-				{listCarWashes.map((card) => <CardCardWash key={card.id} card={card} />)}
+		<section className={styles.page}>
+			<div className={styles.sidebar}>
+				<div className={styles.cardsContainer}>
+					{listCarWashes.length &&
+						listCarWashes.map((card) => (
+							<CardCardWash key={card.id} card={card} />
+						))}
+				</div>
 			</div>
-			<YMap />
-		</ section>
+			<div className={styles.map}>
+				<Search
+					query={query}
+					onChange={handleOnChange}
+					clearInput={clearInput}
+					placeholder="Введите название, адрес или услугу"
+				/>
+				<YMap />
+			</div>
+		</section>
 	);
 }
 
