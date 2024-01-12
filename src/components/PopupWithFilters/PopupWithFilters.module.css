@@ -1,0 +1,47 @@
+.popup {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.container {
+	font-family: 'Roboto', Arial, sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	background-color: #fff;
+	padding: 24px;
+	box-sizing: border-box;
+	max-width: 575px;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header {
+	margin: 0;
+	font-family: 'Manrope', Arial, sans-serif;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: normal;
+	padding-top: 20px;
+}
+
+.filters {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 28px;
+}
+
+.filter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0;
+	width: 100%;
+}
