@@ -7,6 +7,12 @@ import {
 } from '@pbe/react-yandex-maps';
 import { useGeolocated } from 'react-geolocated';
 import { memo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	selectCarWashes,
+	setCurrentCarWash,
+} from '../../store/carWashes/carWashes-slice';
+import IconLocation from '../../assets/location.png';
 
 function YMap() {
 	const { coords } = useGeolocated({
@@ -17,6 +23,8 @@ function YMap() {
 	});
 
 	const [geoData, setGeoData] = useState(null);
+	const dispatch = useDispatch();
+	const { listCarWashes, loading } = useSelector(selectCarWashes);
 
 	const getGeolocation = (ymaps) => {
 		ymaps.geolocation
@@ -41,7 +49,7 @@ function YMap() {
 					center: [coordinates.latitude, coordinates.longitude],
 					zoom: 13,
 				}}
-				style={{ width: '100%', height: '100vh' }}
+				style={{ width: '100%', height: '100%' }}
 				onLoad={(ymaps) => getGeolocation(ymaps)}
 				modules={['geolocation']}
 			>
@@ -50,6 +58,24 @@ function YMap() {
 				<ZoomControl />
 
 				<Placemark geometry={[coordinates.latitude, coordinates.longitude]} />
+				{!loading &&
+					listCarWashes.map((carWash) => (
+						<Placemark
+							key={carWash.id}
+							geometry={[carWash.latitude, carWash.longitude]}
+							onClick={() => console.log(carWash.name)}
+							onMouseEnter={() =>
+								dispatch(
+									setCurrentCarWash({ id: carWash.id, name: carWash.name })
+								)
+							}
+							options={{
+								iconLayout: 'default#image',
+								iconImageHref: IconLocation,
+								iconImageSize: [32, 32],
+							}}
+						/>
+					))}
 			</Map>
 		)
 	);

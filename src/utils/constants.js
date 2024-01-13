@@ -1,5 +1,6 @@
 // Ссылки на API
 export const URL_PROJECT_API = '';
+export const BASE_URL = 'http://185.41.161.91';
 
 // Контент текст
 export const NAME_PROJECT = 'Ближайшая автомойка';

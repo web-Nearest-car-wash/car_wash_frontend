@@ -50,6 +50,8 @@
 				}
 			],
 			"react/react-in-jsx-scope": "off",
+			"class-methods-use-this": "off",
+			"react/require-default-props": "off",
 			"import/prefer-default-export": "off",
 			"react/function-component-definition": "off",
 			"react/jsx-props-no-spreading": "off",

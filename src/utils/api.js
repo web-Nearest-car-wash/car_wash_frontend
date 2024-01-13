@@ -1,3 +1,5 @@
+import { BASE_URL } from './constants';
+
 export class Api {
 	#baseurl;
 
@@ -6,24 +8,23 @@ export class Api {
 	constructor({ baseUrl, headers }) {
 		this.#baseurl = baseUrl;
 		this.#headers = headers;
-	};
+	}
+
+	#onResponse(res) {
+		return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
+	}
 
 	getListCarWash() {
 		return fetch(`${this.#baseurl}/api/carwashes/`, {
-			headers: this.#headers,
-		})
-			.then((res) => {
-				if (res.ok) {
-					return res.json();
-				};
-				return Promise.reject(new Error(`Ошибка: ${res.status}`));
-			})
-			.catch(err => err)
-	};
-};
+			headers: {
+				...this.#headers,
+			},
+		}).then(this.#onResponse);
+	}
+}
 
 const api = new Api({
-	baseUrl: 'http://185.41.161.91',
+	baseUrl: BASE_URL,
 	headers: {
 		'Content-Type': 'application/json',
 	},
