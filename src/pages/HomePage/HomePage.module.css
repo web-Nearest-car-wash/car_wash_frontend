@@ -21,7 +21,7 @@
 }
 
 .cardsContainer {
-	height: 100vh;
+	height: calc(100vh - 224px);
 	overflow-y: auto;
 	overflow-x: hidden;
 }

@@ -9,6 +9,10 @@
 	box-sizing: border-box;
 }
 
+.cardWash:hover {
+	cursor: pointer;
+}
+
 .cardWash:hover .title {
 	color: #5568d0;
 }
@@ -16,6 +20,10 @@
 .cardWash:active .open {
 	color: #fff;
 	background-color: #5568d0;
+}
+
+.current {
+	border: 1px solid red;
 }
 
 .image {
@@ -67,7 +75,6 @@
 
 .adress {
 	color: #7b7b7b;
-	font-family: Roboto;
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 21px;
@@ -79,7 +86,6 @@
 
 .price {
 	color: #7b7b7b;
-	font-family: Roboto;
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 21px;
@@ -97,7 +103,6 @@
 	right: 30px;
 	padding: 4px;
 	margin: 0;
-	font-family: Roboto;
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 14px;

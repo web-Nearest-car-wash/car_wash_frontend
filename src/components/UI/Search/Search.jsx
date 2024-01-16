@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Search.module.css';
 import IconSearch from '../icons/IconSearch';
