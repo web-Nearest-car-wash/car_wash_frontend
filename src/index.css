@@ -4,6 +4,10 @@
 
 :root {
 	--primary-color: #f7f7f7;
+	--almost-black: #252525;
+	--gray: #4d4d4d;
+	--dark: #252525;
+	--blue: #5568d0;
 }
 
 body {
