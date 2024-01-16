@@ -21,6 +21,22 @@ export class Api {
 			},
 		}).then(this.#onResponse);
 	}
+
+	getListServices() {
+		return fetch(`${this.#baseurl}/api/keywords_services/`, {
+			headers: {
+				...this.#headers,
+			},
+		}).then(this.#onResponse);
+	}
+
+	getListTypes() {
+		return fetch(`${this.#baseurl}/api/types/`, {
+			headers: {
+				...this.#headers,
+			},
+		}).then(this.#onResponse);
+	}
 }
 
 const api = new Api({
