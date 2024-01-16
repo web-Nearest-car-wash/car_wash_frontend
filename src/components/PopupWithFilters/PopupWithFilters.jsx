@@ -1,6 +1,6 @@
-import React from 'react';
-import ServiceCheckbox from '../UI/ServiceCheckbox/ServiceCheckbox';
 import styles from './PopupWithFilters.module.css';
+import FilterWithCheckbox from '../UI/FilterWithCheckbox/FilterWithCheckbox';
+import FilterWithServices from '../UI/FilterWithServices/FilterWithServices';
 
 function PopupWithFilters() {
 	return (
@@ -8,10 +8,11 @@ function PopupWithFilters() {
 			<div className={styles.container}>
 				<h2 className={styles.header}>Фильтр</h2>
 				<div className={styles.filters}>
-					<p className={styles.filter}>
-						Открыто сейчас
-						<ServiceCheckbox />
-					</p>
+					<FilterWithCheckbox filterName="Открыто сейчас" />
+					<FilterWithCheckbox filterName="Круглосуточно" />
+					<FilterWithServices title="Услуга" />
+					<FilterWithServices title="Формат" />
+					<FilterWithCheckbox filterName="Рейтинг 4+" />
 				</div>
 			</div>
 		</div>
