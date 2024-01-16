@@ -1,24 +1,54 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import api from '../../utils/api';
 
 const initialState = {
-	test: 'Now',
+	carWashes: {},
+	listCarWashes: [],
+	currentCarWash: {},
+	loading: true,
+	error: null,
 };
 
 export const sliceName = 'carWashes';
+
+export const fetchListCarWash = createAsyncThunk(
+	`${sliceName}/fetchListCarWash`,
+	async (_, { fulfillWithValue, rejectWithValue }) => {
+		try {
+			const data = await api.getListCarWash();
+			return fulfillWithValue({ ...data });
+		} catch (err) {
+			return rejectWithValue(err);
+		}
+	}
+);
 
 const carWashesSlice = createSlice({
 	name: sliceName,
 	initialState,
 	reducers: {
-		testAction: (state, action) => {
-			state.test = action.payload;
+		setCurrentCarWash: (state, action) => {
+			state.currentCarWash = action.payload;
 		},
 	},
-	// extraReducers: (builder) => {
-	// 	builder.addCase();
-	// },
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchListCarWash.pending, (state) => {
+				state.loading = true;
+				state.error = null;
+			})
+			.addCase(fetchListCarWash.fulfilled, (state, action) => {
+				state.carWashes = action.payload;
+				state.listCarWashes = action.payload.results;
+				state.loading = false;
+			})
+			.addCase(fetchListCarWash.rejected, (state, action) => {
+				state.error = action.payload;
+				state.loading = false;
+			});
+	},
 });
 
 export const selectCarWashes = (state) => state[sliceName];
-export const { testAction } = carWashesSlice.actions;
+export const { setCurrentCarWash } = carWashesSlice.actions;
 export default carWashesSlice.reducer;
