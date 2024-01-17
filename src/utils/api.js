@@ -21,6 +21,14 @@ export class Api {
 			},
 		}).then(this.#onResponse);
 	}
+
+	searchCarWashes(searchValue) {
+		return fetch(`${this.#baseurl}/api/carwashes/?search=${searchValue}`, {
+			headers: {
+				...this.#headers,
+			},
+		}).then(this.#onResponse);
+	}
 }
 
 const api = new Api({

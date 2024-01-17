@@ -14,8 +14,8 @@ function HomePage() {
 	const { listCarWashes, loading } = useSelector(selectCarWashes);
 	const [query, setQuery] = useState('');
 
-	const handleOnChange = (e) => {
-		setQuery(e.target.value);
+	const handleOnChange = (value) => {
+		setQuery(value);
 	};
 
 	const clearInput = () => {
