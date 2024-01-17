@@ -26,7 +26,7 @@ jobs:
           file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/car-wash-frontend:latest
-          secrets: |
+          build-args: |
             REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}
 
   deploy:
