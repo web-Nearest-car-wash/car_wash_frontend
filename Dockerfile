@@ -1,5 +1,6 @@
 # build env
-FROM node:18-alpine3.18 as build
+FROM node:19-alpine as build
+ENV REACT_APP_API_KEY=$REACT_APP_API_KEY
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
