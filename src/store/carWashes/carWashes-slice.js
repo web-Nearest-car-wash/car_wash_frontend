@@ -5,6 +5,7 @@ const initialState = {
 	carWashes: {},
 	listCarWashes: [],
 	currentCarWash: {},
+	currentCarWashOnMap: {},
 	loading: true,
 	error: null,
 };
@@ -30,6 +31,9 @@ const carWashesSlice = createSlice({
 		setCurrentCarWash: (state, action) => {
 			state.currentCarWash = action.payload;
 		},
+		setCurrentCarWashOnMap: (state, action) => {
+			state.currentCarWashOnMap = action.payload;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -50,5 +54,6 @@ const carWashesSlice = createSlice({
 });
 
 export const selectCarWashes = (state) => state[sliceName];
-export const { setCurrentCarWash } = carWashesSlice.actions;
+export const { setCurrentCarWash, setCurrentCarWashOnMap } =
+	carWashesSlice.actions;
 export default carWashesSlice.reducer;

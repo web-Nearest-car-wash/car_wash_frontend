@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './CardCarWash.module.css';
 import ReitingStar from '../../assets/ReitingStar.svg';
 import ColorLineSubway from '../../assets/ColorLineSubway.svg';
 import avatarPlaceholder from '../../assets/avatarPlaceholder.png';
 import { BASE_URL } from '../../utils/constants';
-import { selectCarWashes } from '../../store/carWashes/carWashes-slice';
+import {
+	selectCarWashes,
+	setCurrentCarWash,
+	setCurrentCarWashOnMap,
+} from '../../store/carWashes/carWashes-slice';
 
 function CardCarWash({ card }) {
 	// function findMinPrice(dataCard) {
@@ -18,6 +22,7 @@ function CardCarWash({ card }) {
 	// 	});
 	// 	return result.price;
 	// }
+	const dispatch = useDispatch();
 	const { currentCarWash } = useSelector(selectCarWashes);
 
 	useEffect(() => {
@@ -32,6 +37,10 @@ function CardCarWash({ card }) {
 					? `${styles.cardWash} ${styles.current}`
 					: `${styles.cardWash}`
 			}
+			onMouseEnter={() => {
+				dispatch(setCurrentCarWashOnMap({ id: card.id, name: card.name }));
+				dispatch(setCurrentCarWash({}));
+			}}
 			id={card.id}
 		>
 			<img

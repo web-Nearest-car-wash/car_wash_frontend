@@ -11,8 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	selectCarWashes,
 	setCurrentCarWash,
+	setCurrentCarWashOnMap,
 } from '../../store/carWashes/carWashes-slice';
 import IconLocation from '../../assets/location.png';
+import IconLocationActive from '../../assets/locationActive.png';
 
 function YMap() {
 	const { coords } = useGeolocated({
@@ -24,7 +26,8 @@ function YMap() {
 
 	const [geoData, setGeoData] = useState(null);
 	const dispatch = useDispatch();
-	const { listCarWashes, loading } = useSelector(selectCarWashes);
+	const { listCarWashes, loading, currentCarWashOnMap } =
+		useSelector(selectCarWashes);
 
 	const getGeolocation = (ymaps) => {
 		ymaps.geolocation
@@ -64,14 +67,20 @@ function YMap() {
 							key={carWash.id}
 							geometry={[carWash.latitude, carWash.longitude]}
 							onClick={() => console.log(carWash.name)}
-							onMouseEnter={() =>
+							onMouseEnter={() => {
 								dispatch(
 									setCurrentCarWash({ id: carWash.id, name: carWash.name })
-								)
-							}
+								);
+								dispatch(
+									setCurrentCarWashOnMap({ id: carWash.id, name: carWash.name })
+								);
+							}}
 							options={{
 								iconLayout: 'default#image',
-								iconImageHref: IconLocation,
+								iconImageHref:
+									currentCarWashOnMap?.id === carWash.id
+										? IconLocationActive
+										: IconLocation,
 								iconImageSize: [32, 32],
 							}}
 						/>
