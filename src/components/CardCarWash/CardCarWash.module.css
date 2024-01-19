@@ -11,6 +11,7 @@
 
 .cardWash:hover {
 	cursor: pointer;
+	box-shadow: 0px 5px 21px -9px rgba(85, 104, 208, 0.8);
 }
 
 .cardWash:hover .title {
@@ -23,7 +24,11 @@
 }
 
 .current {
-	border: 1px solid red;
+	box-shadow: 0px 5px 21px -9px rgba(85, 104, 208, 0.8);
+}
+
+.current .title {
+	color: #5568d0;
 }
 
 .image {
