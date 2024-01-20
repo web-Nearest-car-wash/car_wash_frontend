@@ -9,7 +9,7 @@ import discount from '../../assets/discount.svg';
 import { selectcarWashesCard } from '../../store/cardCarWashes/cardCarWashes-slice';
 
 export default function TheAdvancedSection() {
-	const { carWashesCard, loading } = useSelector(selectcarWashesCard);
+	const { carWashesCard } = useSelector(selectcarWashesCard);
 
 	return (
 		<div className={styles.container}>
@@ -24,15 +24,9 @@ export default function TheAdvancedSection() {
 					<p className={styles.text}>Способы оплаты</p>
 				</div>
 				<div className={styles.right}>
-					{loading && (
-						<div id="preloader">
-							<div className={styles.spinner} />
-						</div>
-					)}
-					{!loading && carWashesCard && (
-						<p className={styles.text}>{carWashesCard.payment.join('/')}</p>
-					)}
-					{!loading && !carWashesCard && (
+					{carWashesCard ? (
+						<p className={styles.text}>{carWashesCard.payment?.join('/')}</p>
+					) : (
 						<p className={styles.text}>Услуг не найдено</p>
 					)}
 				</div>
@@ -48,19 +42,13 @@ export default function TheAdvancedSection() {
 					<p className={styles.text}>Акции</p>
 				</div>
 				<div className={styles.right}>
-					{loading && (
-						<div id="preloader">
-							<div className={styles.spinner} />
-						</div>
-					)}
-					{!loading &&
-						carWashesCard.promotions?.length > 0 &&
+					{carWashesCard.promotions?.length > 0 ? (
 						carWashesCard.promotions.map((promotion) => (
 							<p key={promotion} className={styles.text}>
 								{promotion}
 							</p>
-						))}
-					{!loading && !carWashesCard && (
+						))
+					) : (
 						<p className={styles.text}>Услуг не найдено</p>
 					)}
 				</div>
@@ -92,15 +80,9 @@ export default function TheAdvancedSection() {
 					<p className={styles.text}>Комната отдыха</p>
 				</div>
 				<div className={styles.right}>
-					{loading && (
-						<div id="preloader">
-							<div className={styles.spinner} />
-						</div>
-					)}
-					{!loading && carWashesCard?.rest_room && (
+					{carWashesCard?.rest_room ? (
 						<img src={checkmark} className={styles.icon} alt="Галочка" />
-					)}
-					{!loading && !carWashesCard && (
+					) : (
 						<p className={styles.text}>Услуг не найдено</p>
 					)}
 				</div>
