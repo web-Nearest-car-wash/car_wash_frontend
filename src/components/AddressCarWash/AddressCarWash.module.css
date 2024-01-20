@@ -1,0 +1,46 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	height: fit-content;
+	padding: 32px 24px;
+	gap: 24px;
+	border-radius: 20px;
+	background: #fff;
+}
+
+.headingContainer {
+	display: flex;
+	max-width: 453px;
+	gap: 92px;
+	align-items: flex-start;
+}
+
+.heading {
+	margin: 0;
+	color: #252525;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+
+.addressContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.address {
+	margin: 0;
+	color: #252525;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.mapContainer {
+	width: 482px;
+	height: 198px;
+}
