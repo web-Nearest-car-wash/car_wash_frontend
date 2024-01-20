@@ -24,12 +24,16 @@ export default function TheAdvancedSection() {
 					<p className={styles.text}>Способы оплаты</p>
 				</div>
 				<div className={styles.right}>
-					{loading && <p className={styles.text}>Loading...</p>}
+					{loading && (
+						<div id="preloader">
+							<div className={styles.spinner} />
+						</div>
+					)}
 					{!loading && carWashesCard && (
-						<p className={styles.text}>{carWashesCard?.payment?.join('/')}</p>
+						<p className={styles.text}>{carWashesCard.payment.join('/')}</p>
 					)}
 					{!loading && !carWashesCard && (
-						<p className={styles.text}>Нет данных</p>
+						<p className={styles.text}>Услуг не найдено</p>
 					)}
 				</div>
 			</div>
@@ -44,14 +48,20 @@ export default function TheAdvancedSection() {
 					<p className={styles.text}>Акции</p>
 				</div>
 				<div className={styles.right}>
-					{carWashesCard?.promotions?.length > 0 ? (
+					{loading && (
+						<div id="preloader">
+							<div className={styles.spinner} />
+						</div>
+					)}
+					{!loading &&
+						carWashesCard.promotions?.length > 0 &&
 						carWashesCard.promotions.map((promotion) => (
 							<p key={promotion} className={styles.text}>
 								{promotion}
 							</p>
-						))
-					) : (
-						<p className={styles.text}>Нет данных</p>
+						))}
+					{!loading && !carWashesCard && (
+						<p className={styles.text}>Услуг не найдено</p>
 					)}
 				</div>
 			</div>
@@ -82,10 +92,16 @@ export default function TheAdvancedSection() {
 					<p className={styles.text}>Комната отдыха</p>
 				</div>
 				<div className={styles.right}>
-					{carWashesCard?.rest_room === true ? (
+					{loading && (
+						<div id="preloader">
+							<div className={styles.spinner} />
+						</div>
+					)}
+					{!loading && carWashesCard?.rest_room && (
 						<img src={checkmark} className={styles.icon} alt="Галочка" />
-					) : (
-						<p className={styles.text}>Нет</p>
+					)}
+					{!loading && !carWashesCard && (
+						<p className={styles.text}>Услуг не найдено</p>
 					)}
 				</div>
 			</div>
@@ -98,7 +114,7 @@ export default function TheAdvancedSection() {
 					{wiFi === true ? (
 						<img src={checkmark} className={styles.icon} alt="Галочка" />
 					) : (
-						<p className={styles.text}>Нет</p>
+						<p className={styles.text}>Услуг не найдено</p>
 					)}
 				</div>
 			</div> */}
