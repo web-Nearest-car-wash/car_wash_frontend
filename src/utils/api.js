@@ -22,6 +22,14 @@ export class Api {
 		}).then(this.#onResponse);
 	}
 
+	getListFilteredCarWash(querry) {
+		return fetch(`${this.#baseurl}/api/carwashes/?${querry}`, {
+			headers: {
+				...this.#headers,
+			},
+		}).then(this.#onResponse);
+	}
+
 	getListServices() {
 		return fetch(`${this.#baseurl}/api/keywords_services/`, {
 			headers: {
