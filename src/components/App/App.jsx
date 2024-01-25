@@ -4,6 +4,7 @@ import AboutPage from '../../pages/AboutPage/AboutPage';
 
 import Footer from '../Sections/Footer/Footer';
 import Header from '../Sections/Header/Header';
+import Price from '../Price/Price';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/about" element={<AboutPage />} />
+					<Route path="/car-wash/:id" element={<Price />} />
 					<Route path="*" element={<Navigate to="/" replace />} />
 				</Routes>
 			</main>
