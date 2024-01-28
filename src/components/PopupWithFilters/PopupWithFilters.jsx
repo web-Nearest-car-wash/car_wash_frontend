@@ -17,6 +17,8 @@ function PopupWithFilters() {
 	const [checkedAroundClock, setCheckedAroundClock] = useState(false);
 	const [checkedRaiting, setCheckedRaiting] = useState(false);
 
+	const [arr, setArr] = useState([]);
+
 	const request = {
 		opened: checkedOpened ? `is_open=${checkedOpened}` : '',
 		aroundClock: checkedAroundClock
@@ -36,6 +38,12 @@ function PopupWithFilters() {
 	const handleChangeRaiting = () => {
 		setCheckedRaiting(!checkedRaiting);
 	};
+
+	const handleClick = (text, active) => {
+		setArr(!active ? [...arr, text] : arr.filter((i) => i !== text));
+	};
+
+	console.log(arr);
 
 	useEffect(() => {
 		dispatch(
@@ -65,8 +73,16 @@ function PopupWithFilters() {
 						checked={checkedAroundClock}
 						filterName="Круглосуточно"
 					/>
-					<FilterWithServices title="Услуга" services={listServices} />
-					<FilterWithServices title="Формат" services={listTypes} />
+					<FilterWithServices
+						title="Услуга"
+						services={listServices}
+						onClick={handleClick}
+					/>
+					<FilterWithServices
+						title="Формат"
+						services={listTypes}
+						onClick={handleClick}
+					/>
 					<FilterWithCheckbox
 						onChange={handleChangeRaiting}
 						checked={checkedRaiting}
