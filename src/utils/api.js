@@ -38,6 +38,14 @@ export class Api {
 			},
 		}).then(this.#onResponse);
 	}
+
+	getCarWashCard(id) {
+		return fetch(`${this.#baseurl}/api/carwashes/${id}/`, {
+			headers: {
+				...this.#headers,
+			},
+		}).then(this.#onResponse);
+	}
 }
 
 const api = new Api({

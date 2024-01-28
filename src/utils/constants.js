@@ -6,3 +6,4 @@ export const BASE_URL = 'http://185.41.161.91';
 export const NAME_PROJECT = 'Ближайшая автомойка';
 export const ADDRESS_PROJECT = 'Москва, ул.Большая полянка, 29с1';
 export const PHONE_PROJECT = 'Тел.: 8 (495) 667 3934';
+export const POPUP_TEXT = 'На основе отзывов пользователей Яндекса за 2023 год';
