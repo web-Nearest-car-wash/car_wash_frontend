@@ -22,6 +22,15 @@ export class Api {
 		}).then(this.#onResponse);
 	}
 
+	getCarWash(id) {
+		return fetch(`${this.#baseurl}/api/carwashes/${id}/`, {
+			method: 'GET',
+			headers: {
+				...this.#headers,
+			},
+		}).then(this.#onResponse);
+	}
+
 	searchCarWashes(searchValue) {
 		return fetch(`${this.#baseurl}/api/carwashes/?search=${searchValue}`, {
 			headers: {

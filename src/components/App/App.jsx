@@ -4,6 +4,7 @@ import AboutPage from '../../pages/AboutPage/AboutPage';
 
 import Footer from '../Sections/Footer/Footer';
 import Header from '../Sections/Header/Header';
+import Price from '../Price/Price';
 
 function App() {
 	return (
