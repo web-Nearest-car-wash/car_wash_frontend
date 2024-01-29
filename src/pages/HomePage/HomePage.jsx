@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './HomePage.module.css';
 import YMap from '../../components/Map/YMap';
+import FilterButton from '../../components/UI/FilterButton/FilterButton';
 import Search from '../../components/UI/Search/Search';
 import CardCarWash from '../../components/CardCarWash/CardCarWash';
+import PopupWithFilters from '../../components/PopupWithFilters/PopupWithFilters';
 import {
 	fetchListCarWash,
 	selectCarWashes,
 } from '../../store/carWashes/carWashes-slice';
+import { handleOpen } from '../../store/filters/filters-slice';
 
 function HomePage() {
 	const dispatch = useDispatch();
@@ -40,6 +43,7 @@ function HomePage() {
 				</div>
 			</div>
 			<div className={styles.map}>
+				<FilterButton onClick={() => dispatch(handleOpen(true))} />
 				<Search
 					query={query}
 					onChange={handleOnChange}
@@ -48,6 +52,7 @@ function HomePage() {
 				/>
 				<YMap />
 			</div>
+			<PopupWithFilters />
 		</section>
 	);
 }

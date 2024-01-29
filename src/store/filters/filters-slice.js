@@ -4,6 +4,7 @@ import api from '../../utils/api';
 const initialState = {
 	listServices: [],
 	listTypes: [],
+	opened: false,
 	loading: true,
 	error: null,
 };
@@ -37,7 +38,11 @@ export const fetchListTypes = createAsyncThunk(
 const filtersSlice = createSlice({
 	name: sliceName,
 	initialState,
-	reducers: {},
+	reducers: {
+		handleOpen: (state, action) => {
+			state.opened = action.payload;
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchListServices.pending, (state) => {
@@ -69,4 +74,5 @@ const filtersSlice = createSlice({
 });
 
 export const selectFilters = (state) => state[sliceName];
+export const { handleOpen } = filtersSlice.actions;
 export default filtersSlice.reducer;

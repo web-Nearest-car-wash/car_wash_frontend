@@ -16,7 +16,7 @@ function ServiceButton({ textButton, onClick }) {
 			className={`${styles.button} ${active && styles.active}`}
 			onClick={handleClick}
 		>
-			{textButton.toLocaleLowerCase()}
+			{textButton}
 		</button>
 	);
 }

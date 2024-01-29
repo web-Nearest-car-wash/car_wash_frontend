@@ -10,7 +10,7 @@ function FilterWithServices({ title, services, onClick }) {
 				{services.map((service) => (
 					<ServiceButton
 						key={service.name}
-						textButton={service.name}
+						textButton={service.name.toLowerCase()}
 						onClick={onClick}
 					/>
 				))}
