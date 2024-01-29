@@ -4,8 +4,7 @@
 .container {
 	max-width: 807px;
 	width: 100%;
-	min-height: 653px;
-	height: 100%;
+	height: fit-content;
 	display: flex;
 	gap: 20px;
 	flex-direction: column;

@@ -1,0 +1,25 @@
+.page {
+	display: flex;
+	flex-direction: column;
+	width: 1360px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	gap: 16px;
+	justify-content: center;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.main {
+	width: 806px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.sidebar {
+	flex-shrink: 0;
+}

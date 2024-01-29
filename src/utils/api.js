@@ -15,7 +15,7 @@ export class Api {
 	}
 
 	getListCarWash() {
-		return fetch(`${this.#baseurl}/api/carwashes/`, {
+		return fetch(`${this.#baseurl}/api/carwashes/?limit=50`, {
 			headers: {
 				...this.#headers,
 			},
@@ -32,11 +32,14 @@ export class Api {
 	}
 
 	searchCarWashes(searchValue) {
-		return fetch(`${this.#baseurl}/api/carwashes/?search=${searchValue}`, {
-			headers: {
-				...this.#headers,
-			},
-		}).then(this.#onResponse);
+		return fetch(
+			`${this.#baseurl}/api/carwashes/?search=${searchValue}&limit=50`,
+			{
+				headers: {
+					...this.#headers,
+				},
+			}
+		).then(this.#onResponse);
 	}
 
 	getCarWashCard(id) {

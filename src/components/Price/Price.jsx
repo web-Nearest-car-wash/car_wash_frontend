@@ -1,21 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styles from './Price.module.css';
-import api from '../../utils/api';
 
-function Price() {
-	const [cardsService, setCardsService] = useState([]);
-	const { id } = useParams();
-
-	useEffect(() => {
-		api
-			.getCarWash(id)
-			.then((data) => {
-				setCardsService(data.services);
-			})
-			.catch((err) => alert(err));
-	}, [id]);
-
+function Price({ cardsService }) {
 	return (
 		<div className={styles.priceContainer}>
 			<h2 className={styles.title}>Услуги и цены</h2>
@@ -31,5 +17,14 @@ function Price() {
 		</div>
 	);
 }
+
+Price.propTypes = {
+	cardsService: PropTypes.arrayOf(
+		PropTypes.shape({
+			name: PropTypes.string.isRequired,
+			price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		})
+	).isRequired,
+};
 
 export default Price;
