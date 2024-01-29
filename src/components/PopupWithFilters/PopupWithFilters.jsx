@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './PopupWithFilters.module.css';
 import FilterWithCheckbox from '../UI/FilterWithCheckbox/FilterWithCheckbox';
 import FilterWithServices from '../UI/FilterWithServices/FilterWithServices';
+import RemoveSearch from '../UI/icons/RemoveSearch';
+import ClearFilters from '../UI/icons/ClearFilters';
 import {
 	fetchListServices,
 	fetchListTypes,
@@ -61,6 +63,9 @@ function PopupWithFilters() {
 	return (
 		<div className={styles.popup}>
 			<div className={styles.container}>
+				<button className={styles.close} aria-label="Кнопка закрытия попапа">
+					<RemoveSearch />
+				</button>
 				<h2 className={styles.header}>Фильтр</h2>
 				<div className={styles.filters}>
 					<FilterWithCheckbox
@@ -89,6 +94,10 @@ function PopupWithFilters() {
 						filterName="Рейтинг 4+"
 					/>
 				</div>
+				<button className={styles.clear} aria-label="Очистить фильтры">
+					<ClearFilters />
+					Очистить фильтры
+				</button>
 			</div>
 		</div>
 	);

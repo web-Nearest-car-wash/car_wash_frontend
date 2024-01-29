@@ -5,6 +5,7 @@
 	bottom: 0;
 	left: 0;
 	z-index: 1;
+	background-color: rgba(144, 144, 144, 0.5);
 }
 
 .container {
@@ -19,6 +20,17 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	position: fixed;
+	top: 100px;
+	left: 125px;
+}
+
+.close {
+	border: none;
+	background-color: inherit;
+	align-self: flex-end;
+	cursor: pointer;
+	padding: 0;
 }
 
 .header {
@@ -44,4 +56,21 @@
 	align-items: center;
 	margin: 0;
 	width: 100%;
+}
+
+.clear {
+	border: none;
+	cursor: pointer;
+	background-color: inherit;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin-top: 32px;
+	padding: 0;
+	color: #7b7b7b;
+	font-family: 'Roboto', Arial, sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: normal;
 }
