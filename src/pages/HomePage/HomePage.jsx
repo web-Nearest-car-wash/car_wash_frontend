@@ -43,13 +43,15 @@ function HomePage() {
 				</div>
 			</div>
 			<div className={styles.map}>
-				<FilterButton onClick={() => dispatch(handleOpen(true))} />
-				<Search
-					query={query}
-					onChange={handleOnChange}
-					clearInput={clearInput}
-					placeholder="Введите название, адрес или услугу"
-				/>
+				<div className={styles.filters}>
+					<FilterButton onClick={() => dispatch(handleOpen(true))} />
+					<Search
+						query={query}
+						onChange={handleOnChange}
+						clearInput={clearInput}
+						placeholder="Введите название, адрес или услугу"
+					/>
+				</div>
 				<YMap />
 			</div>
 			<PopupWithFilters />
