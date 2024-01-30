@@ -1,17 +1,14 @@
 import PropTypes from 'prop-types';
 import styles from './HeaderCarWash.module.css';
 import { BASE_URL, POPUP_TEXT } from '../../utils/constants';
-import carWashLogoDefault from '../../assets/carWashLogoDefault.jpg';
+import avatarPlaceholder from '../../assets/avatarPlaceholder.png';
 
 function HeaderCarWash({ image, name, rating, schedule }) {
 	// идея рефакторинга: разнести по разным компонентам состояние с галереей и без
 
-	const imageSource =
-		image?.length > 0
-			? `${BASE_URL}/${
-					image.find((currentImage) => currentImage.avatar === true).image
-			  }`
-			: carWashLogoDefault;
+	const imageSource = `${BASE_URL}/${
+		image?.find((currentImage) => currentImage.avatar === true).image
+	}`;
 	const hasMultipleImages = image?.length > 1; // из-за отображения галлереи меняется структура шапки
 
 	return (
@@ -43,6 +40,9 @@ function HeaderCarWash({ image, name, rating, schedule }) {
 					<div className={styles.gallery}>
 						<img
 							src={imageSource}
+							onError={(e) => {
+								e.currentTarget.src = avatarPlaceholder;
+							}}
 							alt={`Автомойка ${name}`}
 							className={styles.logo}
 						/>
@@ -87,6 +87,9 @@ function HeaderCarWash({ image, name, rating, schedule }) {
 						src={imageSource}
 						alt={`Автомойка ${name}`}
 						className={styles.logo}
+						onError={(e) => {
+							e.currentTarget.src = avatarPlaceholder;
+						}}
 					/>
 					<div className={styles.info}>
 						<h1 className={styles.title}>{name}</h1>
