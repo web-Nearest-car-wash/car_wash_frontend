@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import styles from './theAdvancedSection.module.css';
 import creditcard from '../../assets/creditcard.svg';
 import checkmark from '../../assets/checkmark.svg';
@@ -6,10 +6,9 @@ import checkmark from '../../assets/checkmark.svg';
 import couch from '../../assets/couch.svg';
 import discount from '../../assets/discount.svg';
 // import wifi from '../../assets/wifi.svg';
-import { selectcarWashesCard } from '../../store/cardCarWashes/cardCarWashes-slice';
 
-export default function TheAdvancedSection() {
-	const { carWashesCard } = useSelector(selectcarWashesCard);
+function TheAdvancedSection({ payment, promotions, restRoom }) {
+	// закомментированы не реализованные на бэке поля
 
 	return (
 		<div className={styles.container}>
@@ -24,8 +23,8 @@ export default function TheAdvancedSection() {
 					<p className={styles.text}>Способы оплаты</p>
 				</div>
 				<div className={styles.right}>
-					{carWashesCard ? (
-						<p className={styles.text}>{carWashesCard.payment?.join('/')}</p>
+					{payment ? (
+						<p className={styles.text}>{payment?.join('/')}</p>
 					) : (
 						<p className={styles.text}>Услуг не найдено</p>
 					)}
@@ -42,8 +41,8 @@ export default function TheAdvancedSection() {
 					<p className={styles.text}>Акции</p>
 				</div>
 				<div className={styles.right}>
-					{carWashesCard.promotions?.length > 0 ? (
-						carWashesCard.promotions.map((promotion) => (
+					{promotions?.length > 0 ? (
+						promotions.map((promotion) => (
 							<p key={promotion} className={styles.text}>
 								{promotion}
 							</p>
@@ -80,7 +79,7 @@ export default function TheAdvancedSection() {
 					<p className={styles.text}>Комната отдыха</p>
 				</div>
 				<div className={styles.right}>
-					{carWashesCard?.rest_room ? (
+					{restRoom ? (
 						<img src={checkmark} className={styles.icon} alt="Галочка" />
 					) : (
 						<p className={styles.text}>Услуг не найдено</p>
@@ -103,3 +102,11 @@ export default function TheAdvancedSection() {
 		</div>
 	);
 }
+
+TheAdvancedSection.propTypes = {
+	payment: PropTypes.arrayOf(PropTypes.string),
+	promotions: PropTypes.arrayOf(PropTypes.string),
+	restRoom: PropTypes.bool,
+};
+
+export default TheAdvancedSection;

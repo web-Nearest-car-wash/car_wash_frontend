@@ -3,7 +3,7 @@
 	margin: 0;
 	padding: 32px 28px;
 	max-width: 806px;
-	min-height: 304px;
+	min-height: fit-content;
 	background-color: #ffffff;
 	border-radius: 20px;
 }

@@ -1,20 +1,15 @@
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import styles from './HeaderCarWash.module.css';
-import { selectcarWashesCard } from '../../store/cardCarWashes/cardCarWashes-slice';
 import { BASE_URL, POPUP_TEXT } from '../../utils/constants';
-import carWashLogoDefault from '../../assets/carWashLogoDefault.jpg';
+import avatarPlaceholder from '../../assets/avatarPlaceholder.png';
 
-function HeaderCarWash() {
+function HeaderCarWash({ image, name, rating, schedule }) {
 	// идея рефакторинга: разнести по разным компонентам состояние с галереей и без
 
-	const { carWashesCard } = useSelector(selectcarWashesCard);
-	const imageSource =
-		carWashesCard.image?.length > 0
-			? `${BASE_URL}/${
-					carWashesCard.image.find((image) => image.avatar === true).image
-			  }`
-			: carWashLogoDefault;
-	const hasMultipleImages = carWashesCard.image?.length > 1; // из-за отображения галлереи меняется структура шапки
+	const imageSource = `${BASE_URL}/${
+		image?.find((currentImage) => currentImage.avatar === true).image
+	}`;
+	const hasMultipleImages = image?.length > 1; // из-за отображения галлереи меняется структура шапки
 
 	return (
 		<div
@@ -27,21 +22,17 @@ function HeaderCarWash() {
 				<>
 					<div className={styles.about}>
 						<div className={styles.info}>
-							<h1 className={styles.title}>{carWashesCard.name}</h1>
+							<h1 className={styles.title}>{name}</h1>
 							<div className={styles.rating}>
-								<p className={styles.ratingCount}>
-									{carWashesCard.rating || 'Без оценок'}
-								</p>
+								<p className={styles.ratingCount}>{rating || 'Без оценок'}</p>
 								<div className={styles.ratingStar} />
 							</div>
 							<div className={styles.popup}>
 								<div className={styles.popupText}>{POPUP_TEXT}</div>
 							</div>
 						</div>
-						{carWashesCard.schedule?.open_until_list ? (
-							<p className={styles.hours}>
-								{carWashesCard.schedule.open_until_list}
-							</p>
+						{schedule?.open_until_list ? (
+							<p className={styles.hours}>{schedule.open_until_list}</p>
 						) : (
 							''
 						)}
@@ -49,16 +40,20 @@ function HeaderCarWash() {
 					<div className={styles.gallery}>
 						<img
 							src={imageSource}
-							alt={`Автомойка ${carWashesCard.name}`}
+							onError={(e) => {
+								e.currentTarget.src = avatarPlaceholder;
+							}}
+							alt={`Автомойка ${name}`}
 							className={styles.logo}
 						/>
 
-						{carWashesCard.image.map((imageObject, index) => {
+						{image.map((imageObject, index) => {
 							if (index === 1 || index === 2) {
 								return (
 									<img
+										key={imageObject.image}
 										src={`${BASE_URL}/${imageObject.image}`}
-										alt={`Автомойка ${carWashesCard.name}`}
+										alt={`Автомойка ${name}`}
 										className={styles.galleryImage}
 									/>
 								);
@@ -68,13 +63,13 @@ function HeaderCarWash() {
 									<div className={styles.doubleImageContainer}>
 										<img
 											src={`${BASE_URL}/${imageObject.image}`}
-											alt={`Автомойка ${carWashesCard.name}`}
+											alt={`Автомойка ${name}`}
 											className={styles.doubleImages}
 										/>
-										{carWashesCard.image[4] && (
+										{image[4] && (
 											<img
-												src={`${BASE_URL}/${carWashesCard.image[4].image}`}
-												alt={`Автомойка ${carWashesCard.name}`}
+												src={`${BASE_URL}/${image[4].image}`}
+												alt={`Автомойка ${name}`}
 												className={styles.doubleImages}
 											/>
 										)}
@@ -90,25 +85,24 @@ function HeaderCarWash() {
 				<>
 					<img
 						src={imageSource}
-						alt={`Автомойка ${carWashesCard.name}`}
+						alt={`Автомойка ${name}`}
 						className={styles.logo}
+						onError={(e) => {
+							e.currentTarget.src = avatarPlaceholder;
+						}}
 					/>
 					<div className={styles.info}>
-						<h1 className={styles.title}>{carWashesCard.name}</h1>
+						<h1 className={styles.title}>{name}</h1>
 						<div className={styles.rating}>
-							<p className={styles.ratingCount}>
-								{carWashesCard.rating || 'Без оценок'}
-							</p>
+							<p className={styles.ratingCount}>{rating || 'Без оценок'}</p>
 							<div className={styles.ratingStar} />
 						</div>
 						<div className={styles.popup}>
 							<div className={styles.popupText}>{POPUP_TEXT}</div>
 						</div>
 					</div>
-					{carWashesCard.schedule?.open_until_list ? (
-						<p className={styles.hours}>
-							{carWashesCard.schedule.open_until_list}
-						</p>
+					{schedule?.open_until_list ? (
+						<p className={styles.hours}>{schedule.open_until_list}</p>
 					) : (
 						''
 					)}
@@ -117,5 +111,19 @@ function HeaderCarWash() {
 		</div>
 	);
 }
+
+HeaderCarWash.propTypes = {
+	image: PropTypes.arrayOf(
+		PropTypes.shape({
+			avatar: PropTypes.bool,
+			image: PropTypes.string.isRequired,
+		})
+	),
+	name: PropTypes.string,
+	rating: PropTypes.number,
+	schedule: PropTypes.shape({
+		open_until_list: PropTypes.string,
+	}),
+};
 
 export default HeaderCarWash;
