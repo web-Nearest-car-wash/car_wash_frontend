@@ -9,7 +9,7 @@ import HeaderCarWash from '../../components/HeaderCarWash/HeaderCarWash';
 import Price from '../../components/Price/Price';
 import TheAdvancedSection from '../../components/TheAdvancedSection/TheAdvancedSection';
 import AddressCarWash from '../../components/AddressCarWash/AddressCarWash';
-
+import Loader from '../../components/UI/Loader/Loader';
 import styles from './AboutPage.module.css';
 
 function AboutPage() {
@@ -18,7 +18,7 @@ function AboutPage() {
 	useEffect(() => {
 		dispatch(fetchCarWashCard(id));
 	}, [dispatch, id]);
-	const { carWashesCard } = useSelector(selectcarWashesCard);
+	const { carWashesCard, loading } = useSelector(selectcarWashesCard);
 	const coords = {
 		latitude: Number(carWashesCard.latitude),
 		longitude: Number(carWashesCard.longitude),
@@ -26,33 +26,39 @@ function AboutPage() {
 
 	return (
 		<section className={styles.page}>
-			<HeaderCarWash
-				image={carWashesCard.image}
-				name={carWashesCard.name}
-				rating={carWashesCard.rating}
-				schedule={carWashesCard.schedule}
-			/>
-			<div className={styles.wrapper}>
-				<div className={styles.main}>
-					{carWashesCard.services?.length > 0 && (
-						<Price cardsService={carWashesCard.services} />
-					)}
-					<TheAdvancedSection
-						payment={carWashesCard.payment}
-						promotions={carWashesCard.promotions}
-						restRoom={carWashesCard.rest_room}
+			{loading ? (
+				<Loader />
+			) : (
+				<>
+					<HeaderCarWash
+						image={carWashesCard.image}
+						name={carWashesCard.name}
+						rating={carWashesCard.rating}
+						schedule={carWashesCard.schedule}
 					/>
-				</div>
-				<div className={styles.sidebar}>
-					{carWashesCard.contacts && (
-						<AddressCarWash
-							coords={coords}
-							address={carWashesCard.contacts.address}
-							metro={carWashesCard.metro.name}
-						/>
-					)}
-				</div>
-			</div>
+					<div className={styles.wrapper}>
+						<div className={styles.main}>
+							{carWashesCard.services?.length > 0 && (
+								<Price cardsService={carWashesCard.services} />
+							)}
+							<TheAdvancedSection
+								payment={carWashesCard.payment}
+								promotions={carWashesCard.promotions}
+								restRoom={carWashesCard.rest_room}
+							/>
+						</div>
+						<div className={styles.sidebar}>
+							{carWashesCard.contacts && (
+								<AddressCarWash
+									coords={coords}
+									address={carWashesCard.contacts.address}
+									metro={carWashesCard.metro.name}
+								/>
+							)}
+						</div>
+					</div>
+				</>
+			)}
 		</section>
 	);
 }
