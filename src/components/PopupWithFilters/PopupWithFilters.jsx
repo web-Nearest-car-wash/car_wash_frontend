@@ -26,13 +26,13 @@ function PopupWithFilters() {
 	const styleActive = stylesButton.active;
 
 	const request = {
-		opened: checkedOpened ? `is_open=${checkedOpened}` : '',
+		opened: checkedOpened ? `is_open=${checkedOpened}&` : '',
 		aroundClock: checkedAroundClock
-			? `is_around_the_clock=${checkedAroundClock}`
+			? `is_around_the_clock=${checkedAroundClock}&`
 			: '',
-		raiting: checkedRaiting ? `high_rating=${checkedRaiting}` : '',
+		raiting: checkedRaiting ? `high_rating=${checkedRaiting}&` : '',
 		services:
-			arrFilters.length > 0 ? `services=${encodeURI(arrFilters.join())}` : '',
+			arrFilters.length > 0 ? `services=${encodeURI(arrFilters.join())}&` : '',
 	};
 
 	const handleChangeOpened = () => {
@@ -63,7 +63,7 @@ function PopupWithFilters() {
 	const handleApplyfilters = () => {
 		dispatch(
 			fetchListFilteredCarWashes(
-				`${request.opened}&${request.aroundClock}&${request.raiting}&${request.services}`
+				`${request.opened}${request.aroundClock}${request.raiting}${request.services}`
 			)
 		);
 	};
@@ -113,13 +113,11 @@ function PopupWithFilters() {
 						title="Услуга"
 						services={listServices}
 						onClick={handleClickFilterButton}
-						// active={active}
 					/>
 					<FilterWithServices
 						title="Формат"
 						services={listTypes}
 						onClick={handleClickFilterButton}
-						// active={active}
 					/>
 					<FilterWithCheckbox
 						onChange={handleChangeRaiting}
