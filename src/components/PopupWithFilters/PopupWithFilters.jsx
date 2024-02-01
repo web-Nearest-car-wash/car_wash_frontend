@@ -87,6 +87,19 @@ function PopupWithFilters() {
 		dispatch(fetchListTypes());
 	}, [dispatch]);
 
+	useEffect(() => {
+		const closePopupHandler = (e) => {
+			if (e.target.classList.contains(styles.opened)) {
+				dispatch(handleOpen(false));
+			}
+		};
+
+		document.addEventListener('click', closePopupHandler);
+		return () => {
+			document.removeEventListener('click', closePopupHandler);
+		};
+	}, [dispatch]);
+
 	return (
 		<div className={opened ? `${styles.popup} ${styles.opened}` : styles.popup}>
 			<div className={styles.container}>
