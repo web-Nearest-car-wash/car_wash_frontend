@@ -16,4 +16,12 @@
 	display: flex;
 	gap: 12px;
 	flex-wrap: wrap;
+	overflow-y: scroll;
+	max-height: 80px;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+	display: none;
 }
