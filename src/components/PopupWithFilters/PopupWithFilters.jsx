@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './PopupWithFilters.module.css';
+import stylesButton from '../UI/ServiceButton/ServiceButton.module.css';
 import FilterWithCheckbox from '../UI/FilterWithCheckbox/FilterWithCheckbox';
 import FilterWithServices from '../UI/FilterWithServices/FilterWithServices';
 import RemoveSearch from '../UI/icons/RemoveSearch';
@@ -19,7 +20,10 @@ function PopupWithFilters() {
 	const [checkedOpened, setCheckedOpened] = useState(false);
 	const [checkedAroundClock, setCheckedAroundClock] = useState(false);
 	const [checkedRaiting, setCheckedRaiting] = useState(false);
+	const [arrServiceButtons, setArrServiceButtons] = useState([]);
 	const [arrFilters, setArrFilters] = useState([]);
+
+	const styleActive = stylesButton.active;
 
 	const request = {
 		opened: checkedOpened ? `is_open=${checkedOpened}` : '',
@@ -43,10 +47,17 @@ function PopupWithFilters() {
 		setCheckedRaiting(!checkedRaiting);
 	};
 
-	const handleClickFilterButton = (text, active) => {
-		setArrFilters(
-			!active ? [...arrFilters, text] : arrFilters.filter((i) => i !== text)
-		);
+	const handleClickFilterButton = (e) => {
+		const { classList, id, value } = e.target;
+		if (classList.contains(styleActive)) {
+			classList.remove(styleActive);
+			setArrServiceButtons(arrServiceButtons.filter((item) => item.id !== id));
+			setArrFilters(arrFilters.filter((i) => i !== value));
+		} else {
+			classList.add(styleActive);
+			setArrServiceButtons([...arrServiceButtons, { id }]);
+			setArrFilters([...arrFilters, value]);
+		}
 	};
 
 	const handleApplyfilters = () => {
@@ -55,13 +66,15 @@ function PopupWithFilters() {
 				`${request.opened}&${request.aroundClock}&${request.raiting}&${request.services}`
 			)
 		);
-		dispatch(handleOpen(false));
 	};
 
 	const handleClearFilters = () => {
 		setCheckedOpened(false);
 		setCheckedAroundClock(false);
 		setCheckedRaiting(false);
+		arrServiceButtons.map((item) =>
+			document.getElementById(item.id).classList.remove(styleActive)
+		);
 		dispatch(
 			fetchListFilteredCarWashes(
 				`${request.opened}&${request.aroundClock}&${request.raiting}&${request.services}`
@@ -100,11 +113,13 @@ function PopupWithFilters() {
 						title="Услуга"
 						services={listServices}
 						onClick={handleClickFilterButton}
+						// active={active}
 					/>
 					<FilterWithServices
 						title="Формат"
 						services={listTypes}
 						onClick={handleClickFilterButton}
+						// active={active}
 					/>
 					<FilterWithCheckbox
 						onChange={handleChangeRaiting}

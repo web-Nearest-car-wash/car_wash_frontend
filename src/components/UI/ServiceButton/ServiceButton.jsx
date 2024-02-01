@@ -1,29 +1,25 @@
-import { useState } from 'react';
+import { useId } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ServiceButton.module.css';
 
-function ServiceButton({ textButton, onClick }) {
-	const [active, setActive] = useState(false);
-
-	const handleClick = () => {
-		setActive(!active);
-		onClick(textButton, active);
-	};
-
+function ServiceButton({ onClick, value }) {
+	const id = useId();
 	return (
 		<button
+			id={id}
 			aria-label="Кнопка фильтра"
-			className={`${styles.button} ${active && styles.active}`}
-			onClick={handleClick}
+			className={styles.button}
+			onClick={onClick}
+			value={value}
 		>
-			{textButton}
+			{value}
 		</button>
 	);
 }
 
 ServiceButton.propTypes = {
 	onClick: PropTypes.func,
-	textButton: PropTypes.string,
+	value: PropTypes.string,
 };
 
 export default ServiceButton;
