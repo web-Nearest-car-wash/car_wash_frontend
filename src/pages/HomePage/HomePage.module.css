@@ -35,3 +35,9 @@
 .cardsContainer::-webkit-scrollbar {
 	display: none;
 }
+
+/* фикс подчеркивания для карточек */
+a {
+	text-decoration: none;
+	text-decoration-style: none;
+}

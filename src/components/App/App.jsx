@@ -12,7 +12,7 @@ function App() {
 			<main id="main" style={{ backgroundColor: '#ECECEC' }}>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/about" element={<AboutPage />} />
+					<Route path="/carwashes/:id" element={<AboutPage />} />
 					<Route path="*" element={<Navigate to="/" replace />} />
 				</Routes>
 			</main>

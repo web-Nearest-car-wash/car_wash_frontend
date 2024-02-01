@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styles from './HomePage.module.css';
 import YMap from '../../components/Map/YMap';
 import FilterButton from '../../components/UI/FilterButton/FilterButton';
@@ -17,8 +18,8 @@ function HomePage() {
 	const { listCarWashes, loading } = useSelector(selectCarWashes);
 	const [query, setQuery] = useState('');
 
-	const handleOnChange = (e) => {
-		setQuery(e.target.value);
+	const handleOnChange = (value) => {
+		setQuery(value);
 	};
 
 	const clearInput = () => {
@@ -37,7 +38,9 @@ function HomePage() {
 						<p>Loading...</p>
 					) : (
 						listCarWashes.map((card) => (
-							<CardCarWash key={card.id} card={card} />
+							<Link key={card.id} to={`/carwashes/${card.id}`}>
+								<CardCarWash card={card} />
+							</Link>
 						))
 					)}
 				</div>

@@ -1,0 +1,156 @@
+.container {
+	display: flex;
+	width: 100%;
+	min-height: 268px;
+	padding: 32px 28px;
+	border-radius: 20px;
+	background: #fff;
+	box-sizing: border-box;
+}
+
+.column {
+	flex-direction: column;
+}
+
+.about {
+	display: flex;
+	position: relative;
+}
+
+.logo {
+	clip-path: path(
+		'M88.0228 5.078C92.6957 -1.37027 102.304 -1.37027 106.977 5.078V5.078C110.568 10.0327 117.369 11.3855 122.582 8.18197V8.18197C129.367 4.01276 138.244 7.68984 140.093 15.4355V15.4355C141.514 21.387 147.28 25.2395 153.322 24.2748V24.2748C161.186 23.0194 167.981 29.8138 166.725 37.6776V37.6776C165.761 43.7199 169.613 49.4855 175.565 50.9066V50.9066C183.31 52.7561 186.987 61.6333 182.818 68.4181V68.4181C179.615 73.6314 180.967 80.4324 185.922 84.0228V84.0228C192.37 88.6957 192.37 98.3043 185.922 102.977V102.977C180.967 106.568 179.615 113.369 182.818 118.582V118.582C186.987 125.367 183.31 134.244 175.565 136.093V136.093C169.613 137.514 165.761 143.28 166.725 149.322V149.322C167.981 157.186 161.186 163.981 153.322 162.725V162.725C147.28 161.761 141.514 165.613 140.093 171.565V171.565C138.244 179.31 129.367 182.987 122.582 178.818V178.818C117.369 175.615 110.568 176.967 106.977 181.922V181.922C102.304 188.37 92.6957 188.37 88.0228 181.922V181.922C84.4324 176.967 77.6314 175.615 72.4181 178.818V178.818C65.6333 182.987 56.7561 179.31 54.9066 171.565V171.565C53.4855 165.613 47.7199 161.761 41.6776 162.725V162.725C33.8138 163.981 27.0194 157.186 28.2748 149.322V149.322C29.2395 143.28 25.387 137.514 19.4355 136.093V136.093C11.6898 134.244 8.01276 125.367 12.182 118.582V118.582C15.3855 113.369 14.0327 106.568 9.078 102.977V102.977C2.62973 98.3043 2.62973 88.6957 9.078 84.0228V84.0228C14.0327 80.4324 15.3855 73.6314 12.182 68.4181V68.4181C8.01276 61.6333 11.6898 52.7561 19.4355 50.9066V50.9066C25.387 49.4855 29.2395 43.7199 28.2748 37.6776V37.6776C27.0194 29.8138 33.8138 23.0194 41.6776 24.2748V24.2748C47.7199 25.2395 53.4855 21.387 54.9066 15.4355V15.4355C56.7561 7.68983 65.6333 4.01276 72.4181 8.18197V8.18197C77.6314 11.3855 84.4324 10.0327 88.0228 5.078V5.078Z'
+	);
+	height: 203px;
+	width: 203px;
+	object-fit: cover;
+	object-position: center;
+	display: block;
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	flex-shrink: 0;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	margin-left: 27px;
+}
+
+.title {
+	margin: 0px;
+	color: #252525;
+	font-family: Manrope;
+	font-size: 44px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.rating {
+	margin-top: 12px;
+	display: flex;
+	align-items: center;
+	gap: 0 7px;
+}
+
+.ratingCount {
+	color: #252525;
+	font-family: Roboto;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	margin: 0;
+}
+
+.ratingStar {
+	background-image: url('../../assets/ReitingStar.svg');
+	width: 20px;
+	height: 16px;
+	object-fit: cover;
+	background-repeat: no-repeat;
+}
+
+.popup {
+	top: 115px;
+	background: #f2f2f2;
+	padding: 16px;
+	position: absolute;
+	z-index: 2;
+	visibility: hidden;
+	opacity: 0;
+	transition: 0.4s;
+}
+
+.popup::after {
+	position: absolute;
+	top: -12px;
+	left: 5px;
+	z-index: -1;
+	content: '';
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-bottom: 50px solid #f2f2f2;
+}
+
+.popupText {
+	margin: 0;
+	font-family: Roboto;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.rating:hover + .popup {
+	visibility: visible;
+	opacity: 1;
+}
+
+.hours {
+	font-family: Manrope;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	color: #5568d0;
+	margin: 0 0 0 auto;
+}
+
+.gallery {
+	margin-top: 24px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 12px;
+}
+
+.galleryImage {
+	height: 230px;
+	width: auto;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
+.galleryImage:nth-child(2) {
+	width: 37%;
+}
+
+.galleryImage:nth-child(3) {
+	width: 16%;
+}
+
+.doubleImageContainer {
+	width: 23%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 230px;
+}
+
+.doubleImages {
+	height: 107px;
+	width: auto;
+	object-fit: cover;
+	border-radius: 10px;
+}
