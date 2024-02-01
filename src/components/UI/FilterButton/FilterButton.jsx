@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './FilterButton.module.css';
 import IconFilter from '../icons/IconFilter';
 
-function FilterButton({ handleClick, numberOfFilters }) {
+function FilterButton({ onClick, numberOfFilters }) {
 	return (
 		<div className={styles.filter}>
-			<button
-				aria-label="Фильтр"
-				className={styles.button}
-				onClick={handleClick}
-			>
+			<button aria-label="Фильтр" className={styles.button} onClick={onClick}>
 				<IconFilter />
 			</button>
 			<p
@@ -27,12 +23,12 @@ function FilterButton({ handleClick, numberOfFilters }) {
 }
 
 FilterButton.propTypes = {
-	handleClick: PropTypes.func,
+	onClick: PropTypes.func,
 	numberOfFilters: PropTypes.number,
 };
 
 FilterButton.defaultProps = {
-	handleClick: () => {},
+	onClick: () => {},
 	numberOfFilters: 0,
 };
 

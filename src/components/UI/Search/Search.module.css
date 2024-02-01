@@ -1,9 +1,14 @@
+.form {
+	width: 100%;
+}
+
 .wrapper {
 	position: relative;
 	background: #fff;
 	display: flex;
 	flex-direction: column;
 	border-radius: 5px;
+	height: 44px;
 }
 
 .input {
@@ -18,7 +23,7 @@
 	font-style: normal;
 	font-weight: 400;
 	line-height: 130%;
-	padding: 14px 110px 12px 45px;
+	padding: 11px 110px 11px 45px;
 	box-sizing: border-box;
 	cursor: pointer;
 }

@@ -36,6 +36,18 @@ export const fetchCarWashesBySearch = createAsyncThunk(
 	}
 );
 
+export const fetchListFilteredCarWashes = createAsyncThunk(
+	`${sliceName}/fetchListFilteredCarWashes`,
+	async (querry, { fulfillWithValue, rejectWithValue }) => {
+		try {
+			const data = await api.getListFilteredCarWash(querry);
+			return fulfillWithValue({ ...data });
+		} catch (err) {
+			return rejectWithValue(err);
+		}
+	}
+);
+
 const carWashesSlice = createSlice({
 	name: sliceName,
 	initialState,
@@ -59,6 +71,19 @@ const carWashesSlice = createSlice({
 				state.loading = false;
 			})
 			.addCase(fetchListCarWash.rejected, (state, action) => {
+				state.error = action.payload;
+				state.loading = false;
+			})
+
+			.addCase(fetchListFilteredCarWashes.pending, (state) => {
+				state.loading = true;
+				state.error = null;
+			})
+			.addCase(fetchListFilteredCarWashes.fulfilled, (state, action) => {
+				state.listCarWashes = action.payload.results;
+				state.loading = false;
+			})
+			.addCase(fetchListFilteredCarWashes.rejected, (state, action) => {
 				state.error = action.payload;
 				state.loading = false;
 			});

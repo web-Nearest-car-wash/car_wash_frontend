@@ -20,6 +20,12 @@
 	gap: 20px;
 }
 
+.filters {
+	display: flex;
+	width: 100%;
+	gap: 16px;
+}
+
 .cardsContainer {
 	height: calc(100vh - 224px);
 	overflow-y: auto;
