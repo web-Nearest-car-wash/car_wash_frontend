@@ -56,6 +56,12 @@
 	flex-direction: column;
 	justify-content: center;
 	gap: 28px;
+	max-height: 400px;
+	overflow-y: scroll;
+}
+
+.filters::-webkit-scrollbar {
+	display: none;
 }
 
 .filter {
