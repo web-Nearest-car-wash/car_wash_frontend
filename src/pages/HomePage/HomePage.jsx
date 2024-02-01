@@ -12,6 +12,7 @@ import {
 	selectCarWashes,
 } from '../../store/carWashes/carWashes-slice';
 import { handleOpen } from '../../store/filters/filters-slice';
+import Loader from '../../components/UI/Loader/Loader';
 
 function HomePage() {
 	const dispatch = useDispatch();
@@ -35,7 +36,7 @@ function HomePage() {
 			<div className={styles.sidebar}>
 				<div className={styles.cardsContainer}>
 					{loading ? (
-						<p>Loading...</p>
+						<Loader />
 					) : (
 						listCarWashes.map((card) => (
 							<Link key={card.id} to={`/carwashes/${card.id}`}>

@@ -7,7 +7,7 @@ function HeaderCarWash({ image, name, rating, schedule }) {
 	// идея рефакторинга: разнести по разным компонентам состояние с галереей и без
 
 	const imageSource = `${BASE_URL}/${
-		image?.find((currentImage) => currentImage.avatar === true).image
+		image?.find((currentImage) => currentImage.avatar === true)?.image
 	}`;
 	const hasMultipleImages = image?.length > 1; // из-за отображения галлереи меняется структура шапки
 
