@@ -114,7 +114,7 @@ function YMap() {
 							boxShadow: '-2px 2px 13px 13px #cbd9d8',
 							fontSize: '16px',
 							fontWeight: 600,
-							lineHheight: '21px',
+							lineHeight: '21px',
 						}}
 					>
 						Вы находитесь не в Москве либо не удалось получить данные о вашей
