@@ -1,29 +1,25 @@
-import React from 'react';
+import { useId } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ServiceButton.module.css';
 
-function ServiceButton({ textButton, onClick, active }) {
+function ServiceButton({ onClick, value }) {
+	const id = useId();
 	return (
 		<button
+			id={id}
 			aria-label="Кнопка фильтра"
-			className={`${styles.button} ${active && styles.active}`}
+			className={styles.button}
 			onClick={onClick}
+			value={value}
 		>
-			{textButton.toLocaleLowerCase()}
+			{value}
 		</button>
 	);
 }
 
 ServiceButton.propTypes = {
 	onClick: PropTypes.func,
-	textButton: PropTypes.string,
-	active: PropTypes.bool,
-};
-
-ServiceButton.defaultProps = {
-	onClick: () => {},
-	textButton: 'Мойка',
-	active: false,
+	value: PropTypes.string,
 };
 
 export default ServiceButton;

@@ -8,4 +8,6 @@
 
 .label {
 	cursor: pointer;
+	width: 51px;
+	height: 31px;
 }
