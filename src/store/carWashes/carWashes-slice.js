@@ -14,9 +14,9 @@ export const sliceName = 'carWashes';
 
 export const fetchListCarWash = createAsyncThunk(
 	`${sliceName}/fetchListCarWash`,
-	async (_, { fulfillWithValue, rejectWithValue }) => {
+	async ({ latitude, longitude }, { fulfillWithValue, rejectWithValue }) => {
 		try {
-			const data = await api.getListCarWash();
+			const data = await api.getListCarWash({ latitude, longitude });
 			return fulfillWithValue({ ...data });
 		} catch (err) {
 			return rejectWithValue(err);

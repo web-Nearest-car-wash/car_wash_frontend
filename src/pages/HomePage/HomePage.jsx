@@ -1,17 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.css';
 import YMap from '../../components/Map/YMap';
 import Search from '../../components/UI/Search/Search';
 import CardCarWash from '../../components/CardCarWash/CardCarWash';
-import {
-	fetchListCarWash,
-	selectCarWashes,
-} from '../../store/carWashes/carWashes-slice';
+import { selectCarWashes } from '../../store/carWashes/carWashes-slice';
 
 function HomePage() {
-	const dispatch = useDispatch();
 	const { listCarWashes, loading } = useSelector(selectCarWashes);
 	const [query, setQuery] = useState('');
 
@@ -22,10 +18,6 @@ function HomePage() {
 	const clearInput = () => {
 		setQuery('');
 	};
-
-	useEffect(() => {
-		dispatch(fetchListCarWash());
-	}, [dispatch]);
 
 	return (
 		<section className={styles.page}>

@@ -10,9 +10,9 @@ import Price from '../../components/Price/Price';
 import TheAdvancedSection from '../../components/TheAdvancedSection/TheAdvancedSection';
 import AddressCarWash from '../../components/AddressCarWash/AddressCarWash';
 
-import styles from './AboutPage.module.css';
+import styles from './CarWashPage.module.css';
 
-function AboutPage() {
+function CarWashPage() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	useEffect(() => {
@@ -57,4 +57,4 @@ function AboutPage() {
 	);
 }
 
-export default AboutPage;
+export default CarWashPage;

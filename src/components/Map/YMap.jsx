@@ -6,9 +6,11 @@ import {
 	ZoomControl,
 } from '@pbe/react-yandex-maps';
 import { useGeolocated } from 'react-geolocated';
-import { memo, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+	fetchListCarWash,
 	selectCarWashes,
 	setCurrentCarWash,
 	setCurrentCarWashOnMap,
@@ -24,6 +26,7 @@ function YMap() {
 		userDecisionTimeout: 5000,
 	});
 
+	const navigate = useNavigate();
 	const [geoData, setGeoData] = useState(null);
 	const dispatch = useDispatch();
 	const { listCarWashes, loading, currentCarWashOnMap } =
@@ -40,10 +43,17 @@ function YMap() {
 			});
 	};
 
-	const coordinates =
-		geoData?.GeocoderMetaData.text === 'Москва'
-			? coords
-			: { latitude: 55.76, longitude: 37.64 };
+	const coordinates = useMemo(
+		() =>
+			geoData?.GeocoderMetaData.text === 'Москва'
+				? { latitude: coords.latitude, longitude: coords.longitude }
+				: { latitude: 55.756379, longitude: 37.623309 },
+		[coords, geoData?.GeocoderMetaData.text]
+	);
+
+	useEffect(() => {
+		dispatch(fetchListCarWash(coordinates));
+	}, [dispatch, coordinates]);
 
 	return (
 		coordinates && (
@@ -52,7 +62,7 @@ function YMap() {
 					center: [coordinates.latitude, coordinates.longitude],
 					zoom: 13,
 				}}
-				style={{ width: '100%', height: '100%' }}
+				style={{ width: '100%', height: '100%', position: 'relative' }}
 				onLoad={(ymaps) => getGeolocation(ymaps)}
 				modules={['geolocation']}
 			>
@@ -66,13 +76,18 @@ function YMap() {
 						<Placemark
 							key={carWash.id}
 							geometry={[carWash.latitude, carWash.longitude]}
-							onClick={() => console.log(carWash.name)}
+							onClick={() => {
+								navigate(`/carwashes/${carWash.id}`);
+							}}
 							onMouseEnter={() => {
 								dispatch(
 									setCurrentCarWash({ id: carWash.id, name: carWash.name })
 								);
 								dispatch(
-									setCurrentCarWashOnMap({ id: carWash.id, name: carWash.name })
+									setCurrentCarWashOnMap({
+										id: carWash.id,
+										name: carWash.name,
+									})
 								);
 							}}
 							options={{
@@ -85,6 +100,29 @@ function YMap() {
 							}}
 						/>
 					))}
+				{geoData?.GeocoderMetaData.text !== 'Москва' && (
+					<p
+						style={{
+							position: 'absolute',
+							left: '100px',
+							top: '10px',
+							zIndex: 100,
+							margin: 0,
+							maxWidth: '800px',
+							color: '#5568d0',
+							background: '#cbd9d8',
+							boxShadow: '-2px 2px 13px 13px #cbd9d8',
+							fontSize: '16px',
+							fontWeight: 600,
+							lineHheight: '21px',
+						}}
+					>
+						Вы находитесь не в Москве либо не удалось получить данные о вашей
+						геолокации. К сожаленью наш сервис работает пока только на
+						территории Москвы, поэтому для Вас установлена геолокация по
+						умолчанию.
+					</p>
+				)}
 			</Map>
 		)
 	);
