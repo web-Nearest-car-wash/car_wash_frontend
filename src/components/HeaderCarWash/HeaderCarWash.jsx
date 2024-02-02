@@ -1,10 +1,19 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import PropTypes from 'prop-types';
-import styles from './HeaderCarWash.module.css';
-import { BASE_URL, POPUP_TEXT } from '../../utils/constants';
+import { useDispatch, useSelector } from 'react-redux';
 import avatarPlaceholder from '../../assets/avatarPlaceholder.png';
+import { BASE_URL, POPUP_TEXT } from '../../utils/constants';
+import PopupReviews from '../PopupReviews/PopupReviews';
+import { openPopup } from '../../store/popupReviews/actions';
+import styles from './HeaderCarWash.module.css';
 
 function HeaderCarWash({ image, name, rating, schedule }) {
 	// идея рефакторинга: разнести по разным компонентам состояние с галереей и без
+
+	const dispatch = useDispatch();
+
+	const popupIsOpen = useSelector((state) => state.popupReviews.isOpen);
 
 	const imageSource = `${BASE_URL}/${
 		image?.find((currentImage) => currentImage.avatar === true)?.image
@@ -20,10 +29,16 @@ function HeaderCarWash({ image, name, rating, schedule }) {
 			{hasMultipleImages ? (
 				// вариант шапки с галереей
 				<>
+					{/* Попап для оценки */}
+					{popupIsOpen && <PopupReviews />}
+
 					<div className={styles.about}>
 						<div className={styles.info}>
 							<h1 className={styles.title}>{name}</h1>
-							<div className={styles.rating}>
+							<div
+								className={styles.rating}
+								onClick={() => dispatch(openPopup())}
+							>
 								<p className={styles.ratingCount}>{rating || 'Без оценок'}</p>
 								<div className={styles.ratingStar} />
 							</div>
@@ -93,10 +108,12 @@ function HeaderCarWash({ image, name, rating, schedule }) {
 					/>
 					<div className={styles.info}>
 						<h1 className={styles.title}>{name}</h1>
+
 						<div className={styles.rating}>
 							<p className={styles.ratingCount}>{rating || 'Без оценок'}</p>
 							<div className={styles.ratingStar} />
 						</div>
+
 						<div className={styles.popup}>
 							<div className={styles.popupText}>{POPUP_TEXT}</div>
 						</div>
