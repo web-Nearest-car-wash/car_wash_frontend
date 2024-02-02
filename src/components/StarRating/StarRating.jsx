@@ -15,7 +15,7 @@ export default function StarRating({ numTotalStars, initialRating }) {
 	const [numHoveringStars, setNumHoveringStars] = useState(null);
 	const [isUserHovering, setIsUserHovering] = useState(false);
 
-	const isButtonActive = numSelectedStars !== 0;
+	const isButtonActive = numSelectedStars > 0;
 
 	return (
 		<div className={styles.starRating}>

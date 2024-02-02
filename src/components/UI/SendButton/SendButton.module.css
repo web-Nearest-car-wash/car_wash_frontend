@@ -8,7 +8,7 @@
 	align-items: center;
 	padding: 12px;
 	border-radius: 10px;
-	background: rgb(178, 182, 208);
+	background: rgb(85, 104, 208);
 	font-family: Roboto;
 	font-size: 16px;
 	font-weight: 400;
@@ -22,6 +22,7 @@
 }
 
 .button:disabled {
-	background: rgb(85, 104, 208);
+	background: rgb(178, 182, 208);
 	color: white;
+	cursor: auto;
 }
