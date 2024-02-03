@@ -1,6 +1,5 @@
 /* eslint-disable import/no-named-as-default */
 import { useDispatch, useSelector } from 'react-redux';
-
 import { useEffect } from 'react';
 import styles from './PopupReviews.module.css';
 import { closePopup } from '../../store/popupReviews/actions';
@@ -42,7 +41,11 @@ function PopupReviews() {
 						Проставьте рейтинг, эта информация поможет остальным пользователям.
 					</p>
 				</div>
-				<StarRating numTotalStars="5" initialRating="0" />
+				<StarRating
+					numTotalStars="5"
+					initialRating="0"
+					closePopup={closePopup}
+				/>
 			</div>
 		</div>
 	);

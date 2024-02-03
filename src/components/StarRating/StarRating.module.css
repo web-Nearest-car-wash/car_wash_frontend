@@ -3,3 +3,7 @@
 	flex-direction: column;
 	gap: 17px;
 }
+
+.stars {
+	text-align: center;
+}

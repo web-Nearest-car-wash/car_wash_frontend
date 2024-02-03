@@ -20,7 +20,7 @@
 	font-size: 20px;
 	font-weight: 500;
 	background-color: #fff;
-	padding: 24px;
+	padding: 8px 8px 32px 8px;
 	box-sizing: border-box;
 	max-width: 576px;
 	width: 100%;
@@ -40,6 +40,7 @@
 	align-self: flex-end;
 	cursor: pointer;
 	padding: 0;
+	margin: 5px;
 }
 
 .text {
