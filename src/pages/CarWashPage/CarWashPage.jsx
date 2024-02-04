@@ -9,7 +9,7 @@ import HeaderCarWash from '../../components/HeaderCarWash/HeaderCarWash';
 import Price from '../../components/Price/Price';
 import TheAdvancedSection from '../../components/TheAdvancedSection/TheAdvancedSection';
 import AddressCarWash from '../../components/AddressCarWash/AddressCarWash';
-
+import CarWashContacts from '../../components/CarWashContacts/CarWashContacts';
 import styles from './CarWashPage.module.css';
 
 function CarWashPage() {
@@ -44,6 +44,14 @@ function CarWashPage() {
 					/>
 				</div>
 				<div className={styles.sidebar}>
+					{carWashesCard.contacts &&
+						(carWashesCard.contacts.phone ||
+							carWashesCard.contacts.website) && (
+							<CarWashContacts
+								contacts={carWashesCard.contacts}
+								schedule={carWashesCard.schedule}
+							/>
+						)}
 					{carWashesCard.contacts && (
 						<AddressCarWash
 							coords={coords}
