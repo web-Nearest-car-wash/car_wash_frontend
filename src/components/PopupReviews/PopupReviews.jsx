@@ -42,8 +42,8 @@ function PopupReviews() {
 					</p>
 				</div>
 				<StarRating
-					numTotalStars="5"
-					initialRating="0"
+					numTotalStars={5}
+					initialRating={0}
 					closePopup={closePopup}
 				/>
 			</div>

@@ -1,12 +1,14 @@
 /* eslint-disable react/no-array-index-key */
 import { useState, useRef } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { selectcarWashesCard } from '../../store/cardCarWashes/cardCarWashes-slice';
 import Star from '../UI/Star/Star';
 import SendButton from '../UI/SendButton/SendButton';
 import styles from './StarRating.module.css';
-import { REACT_APP_SITE_KEY } from '../../utils/constants';
+import api from '../../utils/api';
+// import { REACT_APP_SITE_KEY } from '../../utils/constants';
 
 export default function StarRating({
 	numTotalStars,
@@ -19,7 +21,9 @@ export default function StarRating({
 		const threshold = isUserHovering ? numHoveringStars : numSelectedStars;
 		return i < threshold ? 'yellow' : 'grey';
 	}
-
+	const carWashId = useSelector(
+		(state) => selectcarWashesCard(state).currentCarWashId
+	);
 	const recaptcha = useRef();
 	const [numSelectedStars, setNumSelectedStars] = useState(initialRating);
 	const [numHoveringStars, setNumHoveringStars] = useState(null);
@@ -31,14 +35,23 @@ export default function StarRating({
 	async function submitForm(event) {
 		event.preventDefault();
 		const captchaValue = recaptcha.current.getValue();
+
 		if (!captchaValue) {
 			alert('Пожалуйста, подтвердите, что Вы не робот.');
 			setIsCaptchaVerified(false);
-		} else {
-			setIsCaptchaVerified(true);
-			// make form submission
+			return;
+		}
+
+		setIsCaptchaVerified(true);
+
+		try {
+			await api.postRatingCarWash(numSelectedStars, carWashId, captchaValue);
 			alert('Отзыв успешно отправлен!');
 			dispatch(closePopup());
+		} catch (error) {
+			alert(
+				'Произошла ошибка при отправке отзыва. Пожалуйста, попробуйте еще раз.'
+			);
 		}
 	}
 
@@ -65,7 +78,7 @@ export default function StarRating({
 			</div>
 			<ReCAPTCHA
 				ref={recaptcha}
-				sitekey={REACT_APP_SITE_KEY}
+				sitekey={process.env.REACT_APP_SITE_KEY}
 				onChange={() => setIsCaptchaVerified(true)}
 			/>
 			<SendButton

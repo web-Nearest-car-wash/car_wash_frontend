@@ -73,6 +73,20 @@ export class Api {
 			},
 		}).then(this.#onResponse);
 	}
+
+	postRatingCarWash(score, carwashId, captcha) {
+		return fetch(`${this.#baseurl}/api/rating/`, {
+			method: 'POST',
+			headers: {
+				...this.#headers,
+			},
+			body: JSON.stringify({
+				score,
+				carwash_id: carwashId,
+				captcha,
+			}),
+		}).then(this.#onResponse);
+	}
 }
 
 const api = new Api({
