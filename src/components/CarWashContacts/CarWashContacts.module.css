@@ -32,6 +32,10 @@
 	font-weight: 400;
 	line-height: 21px;
 	margin: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 250px;
 }
 
 .link {
