@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.css';
 import YMap from '../../components/Map/YMap';
@@ -7,17 +7,14 @@ import FilterButton from '../../components/UI/FilterButton/FilterButton';
 import Search from '../../components/UI/Search/Search';
 import CardCarWash from '../../components/CardCarWash/CardCarWash';
 import PopupWithFilters from '../../components/PopupWithFilters/PopupWithFilters';
-import {
-	fetchListCarWash,
-	selectCarWashes,
-} from '../../store/carWashes/carWashes-slice';
+import { selectCarWashes } from '../../store/carWashes/carWashes-slice';
 import { handleOpen } from '../../store/filters/filters-slice';
 import Loader from '../../components/UI/Loader/Loader';
 
 function HomePage() {
-	const dispatch = useDispatch();
 	const { listCarWashes, loading } = useSelector(selectCarWashes);
 	const [query, setQuery] = useState('');
+	const dispatch = useDispatch();
 
 	const handleOnChange = (value) => {
 		setQuery(value);
@@ -26,10 +23,6 @@ function HomePage() {
 	const clearInput = () => {
 		setQuery('');
 	};
-
-	useEffect(() => {
-		dispatch(fetchListCarWash());
-	}, [dispatch]);
 
 	return (
 		<section className={styles.page}>

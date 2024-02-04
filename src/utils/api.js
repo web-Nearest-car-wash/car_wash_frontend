@@ -14,12 +14,15 @@ export class Api {
 		return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 	}
 
-	getListCarWash() {
-		return fetch(`${this.#baseurl}/api/carwashes/?limit=50`, {
-			headers: {
-				...this.#headers,
-			},
-		}).then(this.#onResponse);
+	getListCarWash({ latitude, longitude }) {
+		return fetch(
+			`${this.#baseurl}/api/carwashes/?limit=50&latitude=${latitude}&longitude=${longitude}`,
+			{
+				headers: {
+					...this.#headers,
+				},
+			}
+		).then(this.#onResponse);
 	}
 
 	getCarWash(id) {
