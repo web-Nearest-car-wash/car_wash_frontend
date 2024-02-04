@@ -2,8 +2,7 @@ name: deploy
 
 on:
   push:
-    branches: [ "develop" ]
-
+    branches: ['develop']
 
 jobs:
   build_and_push_to_docker_hub:
