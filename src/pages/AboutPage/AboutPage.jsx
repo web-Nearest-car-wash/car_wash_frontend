@@ -9,6 +9,7 @@ import HeaderCarWash from '../../components/HeaderCarWash/HeaderCarWash';
 import Price from '../../components/Price/Price';
 import TheAdvancedSection from '../../components/TheAdvancedSection/TheAdvancedSection';
 import AddressCarWash from '../../components/AddressCarWash/AddressCarWash';
+import CarWashContacts from '../../components/CarWashContacts/CarWashContacts';
 import Loader from '../../components/UI/Loader/Loader';
 import styles from './AboutPage.module.css';
 
@@ -48,6 +49,15 @@ function AboutPage() {
 							/>
 						</div>
 						<div className={styles.sidebar}>
+							{(carWashesCard.contacts.phone ||
+								carWashesCard.contacts.website ||
+								(carWashesCard.schedule &&
+									carWashesCard.schedule.day_of_week)) && (
+								<CarWashContacts
+									contacts={carWashesCard.contacts}
+									schedule={carWashesCard.schedule}
+								/>
+							)}
 							{carWashesCard.contacts && (
 								<AddressCarWash
 									coords={coords}
