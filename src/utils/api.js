@@ -54,7 +54,7 @@ export class Api {
 	}
 
 	getListFilteredCarWash(querry) {
-		return fetch(`${this.#baseurl}/api/carwashes/?${querry}`, {
+		return fetch(`${this.#baseurl}/api/carwashes/?${querry}&limit=50`, {
 			headers: {
 				...this.#headers,
 			},
