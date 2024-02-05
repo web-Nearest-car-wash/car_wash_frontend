@@ -11,7 +11,7 @@ function Modal({ isOpen, children, onClose }) {
 			document.body.appendChild(modal);
 		}
 		return () => {
-			document.body.removeChild(modal);
+			if (modal) document.body.removeChild(modal);
 		};
 	}, [isOpen, modal]);
 

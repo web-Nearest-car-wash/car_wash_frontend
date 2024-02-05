@@ -6,13 +6,13 @@ import AboutPage from '../../pages/AboutPage/AboutPage';
 import Modal from '../Modals/Modal/Modal';
 import Footer from '../Sections/Footer/Footer';
 import Header from '../Sections/Header/Header';
-// import { modals } from '../../utils/modals';
+import { modals } from '../../utils/modals';
 
 import { closeModal, selectModal } from '../../store/modal/modal-slice';
 
 function App() {
 	const dispatch = useDispatch();
-	const { isModalOpen } = useSelector(selectModal);
+	const { isModalOpen, currentModal } = useSelector(selectModal);
 
 	return (
 		<BrowserRouter>
@@ -25,7 +25,9 @@ function App() {
 				</Routes>
 			</main>
 			<Footer />
-			<Modal isOpen={isModalOpen} onClose={() => dispatch(closeModal())} />
+			<Modal isOpen={isModalOpen} onClose={() => dispatch(closeModal())}>
+				{modals[currentModal]}
+			</Modal>
 		</BrowserRouter>
 	);
 }

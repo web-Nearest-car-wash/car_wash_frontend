@@ -6,12 +6,11 @@ import YMap from '../../components/Map/YMap';
 import FilterButton from '../../components/UI/FilterButton/FilterButton';
 import Search from '../../components/UI/Search/Search';
 import CardCarWash from '../../components/CardCarWash/CardCarWash';
-import PopupWithFilters from '../../components/PopupWithFilters/PopupWithFilters';
 import {
 	fetchListCarWash,
 	selectCarWashes,
 } from '../../store/carWashes/carWashes-slice';
-import { handleOpen } from '../../store/filters/filters-slice';
+import { openModal } from '../../store/modal/modal-slice';
 import Loader from '../../components/UI/Loader/Loader';
 
 function HomePage() {
@@ -48,7 +47,7 @@ function HomePage() {
 			</div>
 			<div className={styles.map}>
 				<div className={styles.filters}>
-					<FilterButton onClick={() => dispatch(handleOpen(true))} />
+					<FilterButton onClick={() => dispatch(openModal('filtersModal'))} />
 					<Search
 						query={query}
 						onChange={handleOnChange}
@@ -58,7 +57,6 @@ function HomePage() {
 				</div>
 				<YMap />
 			</div>
-			<PopupWithFilters />
 		</section>
 	);
 }

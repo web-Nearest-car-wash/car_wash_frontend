@@ -1,16 +1,21 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ModalOverlay.module.css';
 
 function ModalOverlay({ onClose, children }) {
-	const closePopupByOverlay = (e) =>
-		e.target.className.includes('overlay') && onClose();
+	useEffect(() => {
+		const closePopupByOverlay = (e) => {
+			if (e.target.classList.contains(styles.overlay)) {
+				onClose();
+			}
+		};
+		document.addEventListener('click', closePopupByOverlay);
+		return () => {
+			document.removeEventListener('clock', closePopupByOverlay);
+		};
+	}, [onClose]);
 
-	return (
-		// eslint-disable-next-line jsx-a11y/no-static-element-interactions
-		<div className={styles.overlay} onMouseDown={closePopupByOverlay}>
-			{children}
-		</div>
-	);
+	return <div className={styles.overlay}>{children}</div>;
 }
 
 ModalOverlay.propTypes = {

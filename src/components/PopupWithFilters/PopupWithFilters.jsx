@@ -10,13 +10,13 @@ import {
 	fetchListServices,
 	fetchListTypes,
 	selectFilters,
-	handleOpen,
 } from '../../store/filters/filters-slice';
+import { closeModal } from '../../store/modal/modal-slice';
 import { fetchListFilteredCarWashes } from '../../store/carWashes/carWashes-slice';
 
 function PopupWithFilters() {
 	const dispatch = useDispatch();
-	const { listServices, listTypes, opened } = useSelector(selectFilters);
+	const { listServices, listTypes } = useSelector(selectFilters);
 	const [checkedOpened, setCheckedOpened] = useState(false);
 	const [checkedAroundClock, setCheckedAroundClock] = useState(false);
 	const [checkedRaiting, setCheckedRaiting] = useState(false);
@@ -87,74 +87,59 @@ function PopupWithFilters() {
 		dispatch(fetchListTypes());
 	}, [dispatch]);
 
-	useEffect(() => {
-		const closePopupHandler = (e) => {
-			if (e.target.classList.contains(styles.opened)) {
-				dispatch(handleOpen(false));
-			}
-		};
-
-		document.addEventListener('click', closePopupHandler);
-		return () => {
-			document.removeEventListener('click', closePopupHandler);
-		};
-	}, [dispatch]);
-
 	return (
-		<div className={opened ? `${styles.popup} ${styles.opened}` : styles.popup}>
-			<div className={styles.container}>
+		<div className={styles.container}>
+			<button
+				className={styles.close}
+				aria-label="Кнопка закрытия попапа"
+				onClick={() => dispatch(closeModal())}
+			>
+				<RemoveSearch />
+			</button>
+			<h2 className={styles.header}>Фильтр</h2>
+			<div className={styles.filters}>
+				<FilterWithCheckbox
+					onChange={handleChangeOpened}
+					checked={checkedOpened}
+					filterName="Открыто сейчас"
+				/>
+				<FilterWithCheckbox
+					onChange={handleChangeAroundClock}
+					checked={checkedAroundClock}
+					filterName="Круглосуточно"
+				/>
+				<FilterWithServices
+					title="Услуга"
+					services={listServices}
+					onClick={handleClickFilterButton}
+				/>
+				<FilterWithServices
+					title="Формат"
+					services={listTypes}
+					onClick={handleClickFilterButton}
+				/>
+				<FilterWithCheckbox
+					onChange={handleChangeRaiting}
+					checked={checkedRaiting}
+					filterName="Рейтинг 4+"
+				/>
+			</div>
+			<div className={styles.buttons}>
 				<button
-					className={styles.close}
-					aria-label="Кнопка закрытия попапа"
-					onClick={() => dispatch(handleOpen(false))}
+					className={styles.clear}
+					aria-label="Очистить фильтры"
+					onClick={handleClearFilters}
 				>
-					<RemoveSearch />
+					<ClearFilters />
+					Очистить фильтры
 				</button>
-				<h2 className={styles.header}>Фильтр</h2>
-				<div className={styles.filters}>
-					<FilterWithCheckbox
-						onChange={handleChangeOpened}
-						checked={checkedOpened}
-						filterName="Открыто сейчас"
-					/>
-					<FilterWithCheckbox
-						onChange={handleChangeAroundClock}
-						checked={checkedAroundClock}
-						filterName="Круглосуточно"
-					/>
-					<FilterWithServices
-						title="Услуга"
-						services={listServices}
-						onClick={handleClickFilterButton}
-					/>
-					<FilterWithServices
-						title="Формат"
-						services={listTypes}
-						onClick={handleClickFilterButton}
-					/>
-					<FilterWithCheckbox
-						onChange={handleChangeRaiting}
-						checked={checkedRaiting}
-						filterName="Рейтинг 4+"
-					/>
-				</div>
-				<div className={styles.buttons}>
-					<button
-						className={styles.clear}
-						aria-label="Очистить фильтры"
-						onClick={handleClearFilters}
-					>
-						<ClearFilters />
-						Очистить фильтры
-					</button>
-					<button
-						className={styles.apply}
-						aria-label="Применить фильтры"
-						onClick={handleApplyfilters}
-					>
-						Применить фильтры
-					</button>
-				</div>
+				<button
+					className={styles.apply}
+					aria-label="Применить фильтры"
+					onClick={handleApplyfilters}
+				>
+					Применить фильтры
+				</button>
 			</div>
 		</div>
 	);
