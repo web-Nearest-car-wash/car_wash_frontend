@@ -10,13 +10,13 @@ import {
 	fetchListServices,
 	fetchListTypes,
 	selectFilters,
-	handleOpen,
+	openPopup,
 } from '../../store/filters/filters-slice';
 import { fetchListFilteredCarWashes } from '../../store/carWashes/carWashes-slice';
 
 function PopupWithFilters() {
 	const dispatch = useDispatch();
-	const { listServices, listTypes, opened } = useSelector(selectFilters);
+	const { listServices, listTypes, popupOpened } = useSelector(selectFilters);
 	const [checkedOpened, setCheckedOpened] = useState(false);
 	const [checkedAroundClock, setCheckedAroundClock] = useState(false);
 	const [checkedRaiting, setCheckedRaiting] = useState(false);
@@ -90,7 +90,7 @@ function PopupWithFilters() {
 	useEffect(() => {
 		const closePopupHandler = (e) => {
 			if (e.target.classList.contains(styles.opened)) {
-				dispatch(handleOpen(false));
+				dispatch(openPopup(false));
 			}
 		};
 
@@ -101,12 +101,16 @@ function PopupWithFilters() {
 	}, [dispatch]);
 
 	return (
-		<div className={opened ? `${styles.popup} ${styles.opened}` : styles.popup}>
+		<div
+			className={
+				popupOpened ? `${styles.popup} ${styles.opened}` : styles.popup
+			}
+		>
 			<div className={styles.container}>
 				<button
 					className={styles.close}
 					aria-label="Кнопка закрытия попапа"
-					onClick={() => dispatch(handleOpen(false))}
+					onClick={() => dispatch(openPopup(false))}
 				>
 					<RemoveSearch />
 				</button>

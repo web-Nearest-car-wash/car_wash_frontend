@@ -4,7 +4,7 @@ import api from '../../utils/api';
 const initialState = {
 	listServices: [],
 	listTypes: [],
-	opened: false,
+	popupOpened: false,
 	loading: true,
 	error: null,
 };
@@ -39,8 +39,8 @@ const filtersSlice = createSlice({
 	name: sliceName,
 	initialState,
 	reducers: {
-		handleOpen: (state, action) => {
-			state.opened = action.payload;
+		openPopup: (state, action) => {
+			state.popupOpened = action.payload;
 		},
 	},
 	extraReducers: (builder) => {
@@ -74,5 +74,5 @@ const filtersSlice = createSlice({
 });
 
 export const selectFilters = (state) => state[sliceName];
-export const { handleOpen } = filtersSlice.actions;
+export const { openPopup } = filtersSlice.actions;
 export default filtersSlice.reducer;

@@ -8,7 +8,7 @@ import Search from '../../components/UI/Search/Search';
 import CardCarWash from '../../components/CardCarWash/CardCarWash';
 import PopupWithFilters from '../../components/PopupWithFilters/PopupWithFilters';
 import { selectCarWashes } from '../../store/carWashes/carWashes-slice';
-import { handleOpen } from '../../store/filters/filters-slice';
+import { openPopup } from '../../store/filters/filters-slice';
 import Loader from '../../components/UI/Loader/Loader';
 
 function HomePage() {
@@ -41,7 +41,7 @@ function HomePage() {
 			</div>
 			<div className={styles.map}>
 				<div className={styles.filters}>
-					<FilterButton onClick={() => dispatch(handleOpen(true))} />
+					<FilterButton onClick={() => dispatch(openPopup(true))} />
 					<Search
 						query={query}
 						onChange={handleOnChange}
