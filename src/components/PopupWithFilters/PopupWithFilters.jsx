@@ -11,40 +11,34 @@ import {
 	fetchListTypes,
 	selectFilters,
 	openPopup,
+	onChange,
+	clearFilters,
 } from '../../store/filters/filters-slice';
 import { fetchListFilteredCarWashes } from '../../store/carWashes/carWashes-slice';
 
 function PopupWithFilters() {
 	const dispatch = useDispatch();
-	const { listServices, listTypes, popupOpened } = useSelector(selectFilters);
-	const [checkedOpened, setCheckedOpened] = useState(false);
-	const [checkedAroundClock, setCheckedAroundClock] = useState(false);
-	const [checkedRaiting, setCheckedRaiting] = useState(false);
+	const {
+		listServices,
+		listTypes,
+		popupOpened,
+		washOpened,
+		washAroundClock,
+		washRaiting,
+	} = useSelector(selectFilters);
 	const [arrServiceButtons, setArrServiceButtons] = useState([]);
 	const [arrFilters, setArrFilters] = useState([]);
 
 	const styleActive = stylesButton.active;
 
 	const request = {
-		opened: checkedOpened ? `is_open=${checkedOpened}&` : '',
-		aroundClock: checkedAroundClock
-			? `is_around_the_clock=${checkedAroundClock}&`
+		opened: washOpened ? `is_open=${washOpened}&` : '',
+		aroundClock: washAroundClock
+			? `is_around_the_clock=${washAroundClock}&`
 			: '',
-		raiting: checkedRaiting ? `high_rating=${checkedRaiting}&` : '',
+		raiting: washRaiting ? `high_rating=${washRaiting}&` : '',
 		services:
 			arrFilters.length > 0 ? `services=${encodeURI(arrFilters.join())}&` : '',
-	};
-
-	const handleChangeOpened = () => {
-		setCheckedOpened(!checkedOpened);
-	};
-
-	const handleChangeAroundClock = () => {
-		setCheckedAroundClock(!checkedAroundClock);
-	};
-
-	const handleChangeRaiting = () => {
-		setCheckedRaiting(!checkedRaiting);
 	};
 
 	const handleClickFilterButton = (e) => {
@@ -69,9 +63,7 @@ function PopupWithFilters() {
 	};
 
 	const handleClearFilters = () => {
-		setCheckedOpened(false);
-		setCheckedAroundClock(false);
-		setCheckedRaiting(false);
+		dispatch(clearFilters());
 		arrServiceButtons.map((item) =>
 			document.getElementById(item.id).classList.remove(styleActive)
 		);
@@ -117,13 +109,13 @@ function PopupWithFilters() {
 				<h2 className={styles.header}>Фильтр</h2>
 				<div className={styles.filters}>
 					<FilterWithCheckbox
-						onChange={handleChangeOpened}
-						checked={checkedOpened}
+						onChange={() => dispatch(onChange('washOpened'))}
+						checked={washOpened}
 						filterName="Открыто сейчас"
 					/>
 					<FilterWithCheckbox
-						onChange={handleChangeAroundClock}
-						checked={checkedAroundClock}
+						onChange={() => dispatch(onChange('washAroundClock'))}
+						checked={washAroundClock}
 						filterName="Круглосуточно"
 					/>
 					<FilterWithServices
@@ -137,8 +129,8 @@ function PopupWithFilters() {
 						onClick={handleClickFilterButton}
 					/>
 					<FilterWithCheckbox
-						onChange={handleChangeRaiting}
-						checked={checkedRaiting}
+						onChange={() => dispatch(onChange('washRaiting'))}
+						checked={washRaiting}
 						filterName="Рейтинг 4+"
 					/>
 				</div>

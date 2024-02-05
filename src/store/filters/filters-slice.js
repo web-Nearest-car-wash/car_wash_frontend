@@ -5,6 +5,9 @@ const initialState = {
 	listServices: [],
 	listTypes: [],
 	popupOpened: false,
+	washOpened: false,
+	washAroundClock: false,
+	washRaiting: false,
 	loading: true,
 	error: null,
 };
@@ -42,6 +45,14 @@ const filtersSlice = createSlice({
 		openPopup: (state, action) => {
 			state.popupOpened = action.payload;
 		},
+		onChange: (state, action) => {
+			state[action.payload] = !state[action.payload];
+		},
+		clearFilters: (state) => {
+			state.washOpened = false;
+			state.washAroundClock = false;
+			state.washRaiting = false;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -74,5 +85,5 @@ const filtersSlice = createSlice({
 });
 
 export const selectFilters = (state) => state[sliceName];
-export const { openPopup } = filtersSlice.actions;
+export const { openPopup, onChange, clearFilters } = filtersSlice.actions;
 export default filtersSlice.reducer;
