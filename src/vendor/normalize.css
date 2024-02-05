@@ -87,6 +87,7 @@ textarea {
 button,
 input {
 	overflow: visible;
+	appearance: none;
 }
 
 button,
