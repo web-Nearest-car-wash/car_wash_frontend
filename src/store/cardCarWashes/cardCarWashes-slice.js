@@ -3,6 +3,7 @@ import api from '../../utils/api';
 
 const initialState = {
 	carWashesCard: {},
+	currentCarWashId: null,
 	loading: true,
 	error: null,
 };
@@ -14,7 +15,7 @@ export const fetchCarWashCard = createAsyncThunk(
 	async (id, { fulfillWithValue, rejectWithValue }) => {
 		try {
 			const data = await api.getCarWashCard(id);
-			return fulfillWithValue({ ...data });
+			return fulfillWithValue({ id, ...data });
 		} catch (err) {
 			return rejectWithValue(err);
 		}
@@ -37,6 +38,7 @@ const carWashesCardReducer = createSlice({
 			})
 			.addCase(fetchCarWashCard.fulfilled, (state, action) => {
 				state.carWashesCard = action.payload;
+				state.currentCarWashId = action.payload.id;
 				state.loading = false;
 			})
 			.addCase(fetchCarWashCard.rejected, (state, action) => {

@@ -1,0 +1,9 @@
+.starRating {
+	display: flex;
+	flex-direction: column;
+	gap: 17px;
+}
+
+.stars {
+	text-align: center;
+}
