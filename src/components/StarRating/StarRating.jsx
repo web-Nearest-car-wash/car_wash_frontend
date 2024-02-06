@@ -8,7 +8,7 @@ import Star from '../UI/Star/Star';
 import SendButton from '../UI/SendButton/SendButton';
 import styles from './StarRating.module.css';
 import api from '../../utils/api';
-// import { REACT_APP_SITE_KEY } from '../../utils/constants';
+import { REACT_APP_SITE_KEY } from '../../utils/constants';
 
 export default function StarRating({
 	numTotalStars,
@@ -78,7 +78,7 @@ export default function StarRating({
 			</div>
 			<ReCAPTCHA
 				ref={recaptcha}
-				sitekey={process.env.REACT_APP_SITE_KEY}
+				sitekey={REACT_APP_SITE_KEY}
 				onChange={() => setIsCaptchaVerified(true)}
 			/>
 			<SendButton
