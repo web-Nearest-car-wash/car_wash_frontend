@@ -62,7 +62,7 @@ export class Api {
 	}
 
 	getListServices() {
-		return fetch(`${this.#baseurl}/api/keywords_services/`, {
+		return fetch(`${this.#baseurl}/api/keywords_services/?limit=27`, {
 			headers: {
 				...this.#headers,
 			},
