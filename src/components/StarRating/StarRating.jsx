@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import { useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { selectcarWashesCard } from '../../store/cardCarWashes/cardCarWashes-slice';
@@ -15,8 +15,6 @@ export default function StarRating({
 	initialRating,
 	closePopup,
 }) {
-	const dispatch = useDispatch();
-
 	function getColor(isUserHovering, i, numSelectedStars, numHoveringStars) {
 		const threshold = isUserHovering ? numHoveringStars : numSelectedStars;
 		return i < threshold ? 'yellow' : 'grey';
@@ -47,7 +45,7 @@ export default function StarRating({
 		try {
 			await api.postRatingCarWash(numSelectedStars, carWashId, captchaValue);
 			alert('Отзыв успешно отправлен!');
-			dispatch(closePopup());
+			closePopup();
 		} catch (error) {
 			alert(
 				'Произошла ошибка при отправке отзыва. Пожалуйста, попробуйте еще раз.'
