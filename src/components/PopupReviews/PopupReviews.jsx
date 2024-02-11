@@ -1,19 +1,15 @@
 /* eslint-disable import/no-named-as-default */
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styles from './PopupReviews.module.css';
-import { closePopup } from '../../store/popupReviews/actions';
 import RemoveSearch from '../UI/icons/RemoveSearch';
 import StarRating from '../StarRating/StarRating';
 
-function PopupReviews() {
-	const dispatch = useDispatch();
-	const isOpen = useSelector((state) => state.popupReviews.isOpen);
-
+function PopupReviews({ isOpen, closeModal }) {
 	useEffect(() => {
 		const closePopupHandler = (e) => {
 			if (e.target.classList.contains(styles.opened)) {
-				dispatch(closePopup());
+				closeModal();
 			}
 		};
 
@@ -21,7 +17,7 @@ function PopupReviews() {
 		return () => {
 			document.removeEventListener('click', closePopupHandler);
 		};
-	}, [dispatch]);
+	}, [closeModal]);
 
 	return (
 		<div className={isOpen ? `${styles.popup} ${styles.opened}` : styles.popup}>
@@ -29,7 +25,7 @@ function PopupReviews() {
 				<button
 					className={styles.close}
 					aria-label="Кнопка закрытия попапа"
-					onClick={() => dispatch(closePopup())}
+					onClick={closeModal}
 				>
 					<RemoveSearch />
 				</button>
@@ -44,11 +40,16 @@ function PopupReviews() {
 				<StarRating
 					numTotalStars={5}
 					initialRating={0}
-					closePopup={closePopup}
+					closePopup={closeModal}
 				/>
 			</div>
 		</div>
 	);
 }
+
+PopupReviews.propTypes = {
+	isOpen: PropTypes.bool,
+	closeModal: PropTypes.func,
+};
 
 export default PopupReviews;

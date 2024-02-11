@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# car_wash_frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend для проекта "Ближайшая автомойка".
 
-## Available Scripts
+> **Ближайшая автомойка** - сервис, помогающий пользователям быстро и удобно находить ближайшие автомойки на основе их местоположения. Мы предоставляем возможность сортировки автомоек по различным критериям, чтобы каждый пользователь мог выбрать подходящее заведение.
 
-In the project directory, you can run:
+- Превью доступно по адресу: http://185.41.161.91/
 
-### `npm start`
+## Команда проекта 22 человека
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Авторы:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Frontend – [Максим Ефремов](https://github.com/AliceHab)
+- Frontend – [Алексей](https://github.com/Aleksey-dev-crt)
+- Frontend – [Мурадов Артур](https://github.com/ArthurMur)
+- Frontend – [Ляхов Руслан](https://github.com/Ruslanrus7)
+- Frontend – [Толмачев Виктор](https://github.com/tolmachev21)
+- Frontend – [Тюлюкин Роман](https://github.com/JayWeee)
+- Frontend – [Руслан Роткин](https://github.com/rust007-91)
 
-### `npm test`
+### Соучастники:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Product manager – [Авдеев Николай](https://github.com/Nikolas1440)
+- Project manager – [Шувалова Анастасия](https://github.com/NastasyaShu)
+- QA-инженер – [Андрей Сергеев](https://github.com/crash388)
+- QA-инженер – [Иван Собин](https://github.com/Invastr)
+- QA-инженер – [Сафаргалин Ирек](https://github.com/RickDanil)
+- QA-инженер – [Глухов Кирилл](https://github.com/Axtojoy)
+- QA-инженер – [Карнаухова Дарья](https://github.com/karnaukhovadaria)
+- Дизайнер – [Оксана Кшнякина](https://github.com/Heyoxana)
+- Дизайнер – [Анна Кузнецова](https://github.com/ann-kku)
+- Backend – [Юлия Пашкова](https://github.com/jullitka)
+- Backend – [Федорович Александр](https://github.com/Aleksandr140590)
+- Backend – [Андреева Анна](https://github.com/Anya-sl)
+- Backend – [Павел](https://github.com/PavelPrist)
+- Backend – [Набатов Денис](https://github.com/Airsofter)
+- Backend – [Сергей Екшевиц](https://github.com/Sergey-Ekshevits)
 
-### `npm run build`
+## Технологии:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Webpack** 5.89.0
+- **React** 18.2.0
+- **JavaScript**
+- **Redux** 4.2.1
+- **CSS modules**
+- **Storybook** 7.6.3
+- **React Router Dom** 6.20.1
+- **ESLint** 8.56.0
+- **Prettier** ^3.1.0
+- **Husky** 8.0.3
+- **Commitizen** 4.3.0
+- **Prop-types** 15.8.1
+- **Docker**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Основные функции:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Поиск ближайших автомоек**: Сервис использует геолокацию пользователя для определения ближайших автомоек.
+- **Сортировка по критериям**: Пользователи могут отсортировать найденные автомойки по рейтингу, формату, услугам и времени работы.
+- **Подробные описания автомоек**: Возможность перейти на страницу автомойки и просмотреть дополнительную информацию.
+- **Отзывы и оценки**: Возможность оставлять отзывы и оценки помогает пользователям делиться своим опытом и помогает другим пользователям выбрать подходящую автомойку.
 
-### `npm run eject`
+## Локальный запуск в dev-режиме
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Переход в папку с frontend для запуска проекта локально (доступ по http://localhost:3000/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Установвить зависимости из файла package.json:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Запустить проект:
 
-## Learn More
+```
+npm run start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- проект будет доступен по адресу:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+http://localhost:3000/
+```

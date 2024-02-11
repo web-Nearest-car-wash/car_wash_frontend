@@ -1,19 +1,16 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
 import avatarPlaceholder from '../../assets/avatarPlaceholder.png';
 import { BASE_URL, POPUP_TEXT } from '../../utils/constants';
 import PopupReviews from '../PopupReviews/PopupReviews';
-import { openPopup } from '../../store/popupReviews/actions';
 import styles from './HeaderCarWash.module.css';
+import useModal from '../../hooks/useModal';
 
 function HeaderCarWash({ image, name, rating, schedule }) {
 	// идея рефакторинга: разнести по разным компонентам состояние с галереей и без
 
-	const dispatch = useDispatch();
-
-	const popupIsOpen = useSelector((state) => state.popupReviews.isOpen);
+	const { isOpen, openModal, closeModal } = useModal();
 
 	const imageSource = `${BASE_URL}/${
 		image?.find((currentImage) => currentImage.avatar === true)?.image
@@ -30,15 +27,12 @@ function HeaderCarWash({ image, name, rating, schedule }) {
 				// вариант шапки с галереей
 				<>
 					{/* Попап для оценки */}
-					{popupIsOpen && <PopupReviews />}
+					{isOpen && <PopupReviews isOpen={isOpen} closeModal={closeModal} />}
 
 					<div className={styles.about}>
 						<div className={styles.info}>
 							<h1 className={styles.title}>{name}</h1>
-							<div
-								className={styles.rating}
-								onClick={() => dispatch(openPopup())}
-							>
+							<div className={styles.rating} onClick={openModal}>
 								<p className={styles.ratingCount}>{rating || 'Без оценок'}</p>
 								<div className={styles.ratingStar} />
 							</div>
