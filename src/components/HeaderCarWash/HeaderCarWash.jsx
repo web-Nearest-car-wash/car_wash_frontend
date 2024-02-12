@@ -2,17 +2,19 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import PropTypes from 'prop-types';
 import avatarPlaceholder from '../../assets/avatarPlaceholder.png';
-import { BASE_URL, POPUP_TEXT } from '../../utils/constants';
+import { POPUP_TEXT } from '../../utils/constants';
 import PopupReviews from '../PopupReviews/PopupReviews';
 import styles from './HeaderCarWash.module.css';
 import useModal from '../../hooks/useModal';
+
+const { REACT_APP_BASE_URL } = process.env;
 
 function HeaderCarWash({ image, name, rating, schedule }) {
 	// идея рефакторинга: разнести по разным компонентам состояние с галереей и без
 
 	const { isOpen, openModal, closeModal } = useModal();
 
-	const imageSource = `${BASE_URL}/${
+	const imageSource = `${REACT_APP_BASE_URL}/${
 		image?.find((currentImage) => currentImage.avatar === true)?.image
 	}`;
 	const hasMultipleImages = image?.length > 1; // из-за отображения галлереи меняется структура шапки
@@ -61,7 +63,7 @@ function HeaderCarWash({ image, name, rating, schedule }) {
 								return (
 									<img
 										key={imageObject.image}
-										src={`${BASE_URL}/${imageObject.image}`}
+										src={`${REACT_APP_BASE_URL}/${imageObject.image}`}
 										alt={`Автомойка ${name}`}
 										className={styles.galleryImage}
 									/>
@@ -71,13 +73,13 @@ function HeaderCarWash({ image, name, rating, schedule }) {
 								return (
 									<div className={styles.doubleImageContainer}>
 										<img
-											src={`${BASE_URL}/${imageObject.image}`}
+											src={`${REACT_APP_BASE_URL}/${imageObject.image}`}
 											alt={`Автомойка ${name}`}
 											className={styles.doubleImages}
 										/>
 										{image[4] && (
 											<img
-												src={`${BASE_URL}/${image[4].image}`}
+												src={`${REACT_APP_BASE_URL}/${image[4].image}`}
 												alt={`Автомойка ${name}`}
 												className={styles.doubleImages}
 											/>
