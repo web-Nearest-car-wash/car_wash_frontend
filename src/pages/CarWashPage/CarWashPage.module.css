@@ -11,6 +11,7 @@
 .wrapper {
 	display: flex;
 	justify-content: space-between;
+	gap: 24px;
 }
 
 .main {
@@ -25,4 +26,10 @@
 	flex-direction: column;
 	flex-shrink: 0;
 	gap: 24px;
+}
+
+@media (max-width: 1400px) {
+	.page {
+		width: 96%;
+	}
 }
