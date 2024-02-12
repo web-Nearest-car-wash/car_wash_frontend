@@ -27,6 +27,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/car-wash-frontend:latest
           build-args: |
             REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}
+            REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL}}
 
   deploy:
     runs-on: ubuntu-latest
