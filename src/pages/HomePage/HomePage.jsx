@@ -12,6 +12,7 @@ import { handleOpen } from '../../store/filters/filters-slice';
 import Loader from '../../components/UI/Loader/Loader';
 
 function HomePage() {
+	console.log(process.env);
 	const { listCarWashes, loading } = useSelector(selectCarWashes);
 	const [query, setQuery] = useState('');
 	const dispatch = useDispatch();
