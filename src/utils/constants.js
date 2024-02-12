@@ -1,6 +1,4 @@
 // Ссылки на API
-export const URL_PROJECT_API = '';
-export const BASE_URL = 'http://185.41.161.91';
 export const REACT_APP_SITE_SECRET = '6LcfOWUpAAAAAEO7KiPX7BrCw1ZYO75SVExZE3PF';
 export const REACT_APP_SITE_KEY = '6LcfOWUpAAAAANx7WCOUlbk-MG0UJfqDRfhhl4oY';
 

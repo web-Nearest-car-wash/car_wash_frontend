@@ -5,23 +5,15 @@ import styles from './CardCarWash.module.css';
 import ReitingStar from '../../assets/ReitingStar.svg';
 import ColorLineSubway from '../../assets/ColorLineSubway.svg';
 import avatarPlaceholder from '../../assets/avatarPlaceholder.png';
-import { BASE_URL } from '../../utils/constants';
 import {
 	selectCarWashes,
 	setCurrentCarWash,
 	setCurrentCarWashOnMap,
 } from '../../store/carWashes/carWashes-slice';
 
+const { REACT_APP_BASE_URL } = process.env;
+
 function CardCarWash({ card }) {
-	// function findMinPrice(dataCard) {
-	// 	const result = dataCard.services.reduce((accumulator, item) => {
-	// 		if (accumulator.price >= item.price) {
-	// 			return item;
-	// 		}
-	// 		return accumulator;
-	// 	});
-	// 	return result.price;
-	// }
 	const dispatch = useDispatch();
 	const { currentCarWash } = useSelector(selectCarWashes);
 
@@ -45,7 +37,9 @@ function CardCarWash({ card }) {
 		>
 			<img
 				className={styles.image}
-				src={`${BASE_URL}/${card.image.find((img) => img.avatar)?.image}`}
+				src={`${REACT_APP_BASE_URL}/${
+					card.image.find((img) => img.avatar)?.image
+				}`}
 				onError={(e) => {
 					e.currentTarget.src = avatarPlaceholder;
 				}}
@@ -110,7 +104,7 @@ CardCarWash.propTypes = {
 		}),
 		name: PropTypes.string,
 		open_until: PropTypes.string,
-		rating: PropTypes.string,
+		rating: PropTypes.number,
 	}).isRequired,
 };
 

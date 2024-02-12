@@ -1,4 +1,4 @@
-import { BASE_URL } from './constants';
+const { REACT_APP_BASE_URL } = process.env;
 
 export class Api {
 	#baseurl;
@@ -93,7 +93,7 @@ export class Api {
 }
 
 const api = new Api({
-	baseUrl: BASE_URL,
+	baseUrl: REACT_APP_BASE_URL,
 	headers: {
 		'Content-Type': 'application/json',
 	},
