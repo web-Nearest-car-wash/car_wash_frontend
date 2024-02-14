@@ -6,6 +6,7 @@ import FilterWithCheckbox from '../UI/FilterWithCheckbox/FilterWithCheckbox';
 import FilterWithServices from '../UI/FilterWithServices/FilterWithServices';
 import RemoveSearch from '../UI/icons/RemoveSearch';
 import ClearFilters from '../UI/icons/ClearFilters';
+import encodeQueryString from '../../utils/encodeQuerryString';
 import {
 	fetchListServices,
 	fetchListTypes,
@@ -27,18 +28,16 @@ function PopupWithFilters() {
 		washRaiting,
 	} = useSelector(selectFilters);
 	const [arrServiceButtons, setArrServiceButtons] = useState([]);
-	const [arrFilters, setArrFilters] = useState([]);
+	const [arrServices, setArrServices] = useState([]);
 
 	const styleActive = stylesButton.active;
 
 	const request = {
-		opened: washOpened ? `is_open=${washOpened}&` : '',
-		aroundClock: washAroundClock
-			? `is_around_the_clock=${washAroundClock}&`
-			: '',
-		raiting: washRaiting ? `high_rating=${washRaiting}&` : '',
-		services:
-			arrFilters.length > 0 ? `services=${encodeURI(arrFilters.join())}&` : '',
+		is_open: washOpened,
+		is_around_the_clock: washAroundClock,
+		high_rating: washRaiting,
+		services: arrServices.length ? arrServices : '',
+		type: '',
 	};
 
 	const handleClickFilterButton = (e) => {
@@ -46,20 +45,16 @@ function PopupWithFilters() {
 		if (classList.contains(styleActive)) {
 			classList.remove(styleActive);
 			setArrServiceButtons(arrServiceButtons.filter((item) => item.id !== id));
-			setArrFilters(arrFilters.filter((i) => i !== value));
+			setArrServices(arrServices.filter((i) => i !== value));
 		} else {
 			classList.add(styleActive);
 			setArrServiceButtons([...arrServiceButtons, { id }]);
-			setArrFilters([...arrFilters, value]);
+			setArrServices([...arrServices, value]);
 		}
 	};
 
 	const handleApplyfilters = () => {
-		dispatch(
-			fetchListFilteredCarWashes(
-				`${request.opened}${request.aroundClock}${request.raiting}${request.services}`
-			)
-		);
+		dispatch(fetchListFilteredCarWashes(encodeQueryString(request)));
 	};
 
 	const handleClearFilters = () => {
