@@ -1,0 +1,27 @@
+.container {
+	width: 100%;
+}
+
+.title {
+	margin: 0;
+	font-family: 'Roboto', Arial, sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.filters {
+	width: 100%;
+	margin-top: 16px;
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+	overflow-y: scroll;
+	max-height: 80px;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+	display: none;
+}

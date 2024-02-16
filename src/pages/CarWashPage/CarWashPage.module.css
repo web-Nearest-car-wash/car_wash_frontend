@@ -1,0 +1,35 @@
+.page {
+	display: flex;
+	flex-direction: column;
+	width: 1360px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	gap: 16px;
+	justify-content: center;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	gap: 24px;
+}
+
+.main {
+	width: 806px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	gap: 24px;
+}
+
+@media (max-width: 1400px) {
+	.page {
+		width: 96%;
+	}
+}

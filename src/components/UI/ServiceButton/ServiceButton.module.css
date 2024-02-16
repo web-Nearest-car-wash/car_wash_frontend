@@ -1,0 +1,18 @@
+.button {
+	border: none;
+	padding: 8px 16px;
+	border-radius: 10px;
+	font-family: 'Roboto', Arial, sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.3;
+	color: #252525;
+	background-color: #f4f3f3;
+	cursor: pointer;
+	height: 34px;
+}
+
+.active {
+	background-color: #5568d0;
+	color: white;
+}

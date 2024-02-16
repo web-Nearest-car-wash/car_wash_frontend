@@ -1,0 +1,28 @@
+.button {
+	position: static;
+	min-width: 188px;
+	min-height: 45px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 12px;
+	border-radius: 10px;
+	background: rgb(85, 104, 208);
+	font-family: Roboto;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 130%;
+	letter-spacing: 0%;
+	text-align: center;
+	color: white;
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.button:disabled {
+	background: rgb(178, 182, 208);
+	color: white;
+	cursor: auto;
+}

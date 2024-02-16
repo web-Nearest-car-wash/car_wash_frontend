@@ -1,0 +1,13 @@
+.checkbox {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(0 0 0 0);
+}
+
+.label {
+	cursor: pointer;
+	width: 51px;
+	height: 31px;
+}

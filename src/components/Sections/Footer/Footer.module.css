@@ -1,0 +1,40 @@
+.footer {
+	/* max-width: 1440px; */
+	padding: 20px 40px;
+	display: flex;
+	justify-content: space-between;
+	background-color: #ececec;
+	box-sizing: border-box;
+	margin: 0 auto;
+	border-top: 1px solid #fff;
+	height: 120px;
+}
+
+.logo {
+	width: 239px;
+	margin: 0 0 15px 0;
+}
+
+.copyright {
+	margin: 0;
+	font-size: 14px;
+	color: #7b7b7b;
+}
+
+.contacts {
+	padding: 0;
+	list-style-type: none;
+	margin: 0;
+}
+
+.contact {
+	color: #7b7b7b;
+	font-family: 'Roboto';
+	font-size: 14px;
+	margin: 0 0 8px 0;
+	text-align: right;
+}
+
+.contact:last-of-type {
+	margin: 0;
+}

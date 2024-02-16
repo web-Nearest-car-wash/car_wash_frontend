@@ -1,0 +1,43 @@
+.page {
+	display: flex;
+	width: 100%;
+	margin: 0 auto;
+	box-sizing: border-box;
+	gap: 16px;
+	justify-content: center;
+}
+
+.sidebar {
+	width: 320px;
+	flex-shrink: 0;
+}
+
+.map {
+	flex-grow: 1;
+	max-width: 1024px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.filters {
+	display: flex;
+	width: 100%;
+	gap: 16px;
+}
+
+.cardsContainer {
+	height: calc(100vh - 224px);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.cardsContainer::-webkit-scrollbar {
+	display: none;
+}
+
+/* фикс подчеркивания для карточек */
+a {
+	text-decoration: none;
+	text-decoration-style: none;
+}
